@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns     = "http://www.w3.org/ns/widgets"
+        xmlns:gap = "http://phonegap.com/ns/1.0"
+        id        = "ch.lernetz.dr04iphone"
+        version   = "2.2.0">
+    <name>DR04</name>
+
+    <description>
+        Dienstreglement 04
+    </description>
+
+    <author href="http://www.lernetz.ch" email="support@lernetz.ch">
+        Lernetz AG
+    </author>
+
+    <feature name="http://api.phonegap.com/1.0/device" />
+
+    <preference name="phonegap-version" value="2.2.0" />
+    <preference name="orientation"      value="default" />
+    <preference name="target-device"    value="universal" />
+    <preference name="fullscreen"       value="false" />
+
+    <icon src="icon.png" />
+    <icon src="resources/icon/Icon.png"            gap:platform="ios"        width="57" height="57" />
+    <icon src="resources/icon/Icon-72.png"            gap:platform="ios"        width="72" height="72" />
+    <icon src="resources/icon/Icon@2x.png"         gap:platform="ios"        width="114" height="114" />
+    <icon src="resources/icon/Icon-72@2x.png"         gap:platform="ios"        width="144" height="144" />
+
+    <gap:splash src="resources/startup/320x460.png"    gap:platform="ios"     width="320" height="480" />
+    <gap:splash src="resources/startup/460x920.png"    gap:platform="ios"     width="640" height="960" />
+</widget>
