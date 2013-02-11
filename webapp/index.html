@@ -1,0 +1,2120 @@
+<!DOCTYPE HTML>
+<html manifest="cache.appcache" lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>dr04</title>
+    <style type="text/css">
+         /**
+         * Example of an initial loading indicator.
+         * It is recommended to keep this as minimal as possible to provide instant feedback
+         * while other resources are still being loaded for the first time
+         */
+        html, body {
+            height: 100%;
+            background-color: #222;
+        }
+
+        #appLoadingIndicator > div.info {
+            position: absolute;
+            text-align: center;
+            top: 10%;
+            width: 100%;
+        }
+
+        #appLoadingIndicator img {
+            -webkit-box-shadow: 0px 0px 12px 2px #000;
+        }
+
+
+        #appLoadingIndicator > div.loader {
+            position: absolute;
+            bottom: 50%;
+            margin-top: -15px;
+            text-align: center;
+            width: 100%;
+            height: 30px;
+            -webkit-animation-name: appLoadingIndicator;
+            -webkit-animation-duration: 0.5s;
+            -webkit-animation-iteration-count: infinite;
+            -webkit-animation-direction: linear;
+        }
+
+        #appLoadingIndicator div.dot {
+            background-color: #FFFFFF;
+            display: inline-block;
+            height: 30px;
+            -webkit-border-radius: 15px;
+            margin: 0 5px;
+            width: 30px;
+            opacity: 0.8;
+        }
+
+        @-webkit-keyframes appLoadingIndicator{
+            0% {
+                opacity: 0.8
+            }
+            50% {
+                opacity: 0
+            }
+            100% {
+                opacity: 0.8
+            }
+        }
+    </style>
+
+    <!-- The line below must be kept intact for Sencha Command to build your application -->
+    <script type="text/javascript">(function(i){function s(a){function b(a,j){var c=a.length,b,g;for(b=0;b<c;b++){g=a[b];var e=a,K=b,d=void 0;"string"==typeof g&&(g={path:g});g.shared?(g.version=g.shared,d=g.shared+g.path):(A.href=g.path,d=A.href);g.uri=d;g.key=h+"-"+d;f[d]=g;e[K]=g;g.type=j;g.index=b;g.collection=a;g.ready=!1;g.evaluated=!1}return a}var c;"string"==typeof a?(c=a,a=B(c)):c=JSON.stringify(a);var h=a.id,e=h+"-"+C+o,f={};this.key=e;this.css=b(a.css,"css");this.js=b(a.js,"js");this.assets=this.css.concat(this.js);this.getAsset=
+function(a){return f[a]};this.store=function(){t(e,c)}}function v(a,b){k.write('<meta name="'+a+'" content="'+b+'">')}function p(a,b,c){var h=new XMLHttpRequest,c=c||D,a=a+(-1==a.indexOf("?")?"?":"&")+Date.now();try{h.open("GET",a,!0),h.onreadystatechange=function(){if(4==h.readyState){var a=h.status,d=h.responseText;200<=a&&300>a||304==a||0==a&&0<d.length?b(d):c()}},h.send(null)}catch(d){c()}}function L(a,b){var c=k.createElement("iframe");m.push({iframe:c,callback:b});c.src=a+".html";c.style.cssText=
+"width:0;height:0;border:0;position:absolute;z-index:-999;visibility:hidden";k.body.appendChild(c)}function E(a,b,c){var d=!!a.shared;if(a.remote)b("");else{if(!d)var e=b,f=a.version,l,b=function(j){l=j.substring(0,f.length+4);l!=="/*"+f+"*/"?confirm("Requested: '"+a.uri+"' with checksum: "+f+" but received: "+l.substring(2,f.length)+"instead. Attempt to refresh the application?")&&M():e(j)};(d?L:p)(a.uri,b,c)}}function F(a){var b=a.data,a=a.source.window,c,d,e,f;c=0;for(d=m.length;c<d;c++)if(e=m[c],
+f=e.iframe,f.contentWindow===a){e.callback(b);k.body.removeChild(f);m.splice(c,1);break}}function G(a){"undefined"!=typeof console&&(console.error||console.log).call(console,a)}function t(a,b){try{n.setItem(a,b)}catch(c){if(c.code==c.QUOTA_EXCEEDED_ERR&&q){var d=q.assets.map(function(a){return a.key}),e=0,f=n.length,l=!1,j;for(d.push(q.key);e<=f-1;)j=n.key(e),-1==d.indexOf(j)?(n.removeItem(j),l=!0,f--):e++;l&&t(a,b)}}}function u(a){try{return n.getItem(a)}catch(d){return null}}function M(){H||(H=
+!0,p(o,function(a){(new s(a)).store();i.location.reload()}))}function w(a){function b(a,d){var b=a.collection,g=a.index,f=b.length,e;a.ready=!0;a.content=d;for(e=g-1;0<=e;e--)if(a=b[e],!a.ready||!a.evaluated)return;for(e=g;e<f;e++)if(a=b[e],a.ready)a.evaluated||c(a);else break}function c(a){a.evaluated=!0;if("js"==a.type)try{eval(a.content)}catch(b){G("Error evaluating "+a.uri+" with message: "+b)}else{var d=k.createElement("style"),c;d.type="text/css";d.textContent=a.content;"id"in a&&(d.id=a.id);
+"disabled"in a&&(d.disabled=a.disabled);c=document.createElement("base");c.href=a.path.replace(/\/[^\/]*$/,"/");x.appendChild(c);x.appendChild(d);x.removeChild(c)}delete a.content;0==--f&&h()}function h(){function b(){k&&c()}function c(){var a=r.onUpdated||D;if("onSetup"in r)r.onSetup(a);else a()}function e(){l.store();h.forEach(function(a){t(a.key,a.content)});c()}function g(a,b){a.content=b;0==--m&&(d.status==d.IDLE?e():i=e)}function f(){I("online",f,!1);p(o,function(c){q=l=new s(c);var e;l.assets.forEach(function(b){e=
+a.getAsset(b.uri);(!e||b.version!==e.version)&&h.push(b)});m=h.length;0==m?d.status==d.IDLE?b():i=b:h.forEach(function(b){function d(){E(b,function(a){g(b,a)})}var c=a.getAsset(b.uri),e=b.path,f=b.update;!c||!f||null===u(b.key)||"delta"!=f?d():p("deltas/"+e+"/"+c.version+".json",function(a){try{var d=b,c;var e=u(b.key),f=B(a),a=[],h,j,i;if(0===f.length)c=e;else{j=0;for(i=f.length;j<i;j++)h=f[j],"number"===typeof h?a.push(e.substring(h,h+f[++j])):a.push(h);c=a.join("")}g(d,c)}catch(k){G("Malformed delta content received for "+
+b.uri)}},d)})})}var h=[],k=!1,i=function(){},n=function(){d.swapCache();k=!0;i()},m;I("message",F,!1);if(d.status==d.UPDATEREADY)n();else if(d.status==d.CHECKING||d.status==d.DOWNLOADING)d.onupdateready=n,d.onnoupdate=d.onobsolete=function(){i()};!1!==navigator.onLine?f():y("online",f,!1)}var e=a.assets,f=e.length,l;q=a;y("message",F,!1);0==f?h():e.forEach(function(a){var c=u(a.key);null===c?E(a,function(c){a.remote||t(a.key,c);b(a,c)},function(){b(a,"")}):b(a,c)})}function J(a){null!==k.readyState.match(/interactive|complete|loaded/)?
+w(a):y("DOMContentLoaded",function(){navigator.standalone?setTimeout(function(){setTimeout(function(){w(a)},1)},1):w(a)},!1)}var D=function(){},m=[],k=i.document,x=k.head,y=i.addEventListener,I=i.removeEventListener,n=i.localStorage,d=i.applicationCache,B=JSON.parse,A=k.createElement("a"),z=k.location,C=z.origin+z.pathname+z.search,o="app.json",H=!1,q;if("undefined"===typeof r)var r=i.Ext={};r.blink=function(a){var b=u(a.id+"-"+C+o);v("viewport","width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no");
+v("apple-mobile-web-app-capable","yes");v("apple-touch-fullscreen","yes");b?(a=new s(b),J(a)):p(o,function(b){a=new s(b);a.store();J(a)})}})(this);;Ext.blink({"id":"5bfc9cf5-fd83-48e6-b8ec-9b8211bc3314"})</script>
+</head>
+<body>
+    <div id="appLoadingIndicator">
+        
+        <!-- div class="info">
+            <img src="resources/images/startup.png" />
+        </div -->
+
+        <div class="loader">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+
+    <div id="flyer" class="hidden">
+        <div id="flyer02" class="content">   
+            <div class="dr04-head">
+                <p>Einleitung <span class="number">(1-3)</span> <span class="number_small">Ziffern im DR04</span></p>
+                <p>Grundlagen <span class="number">(4-8)</span></p>
+                <p>&nbsp;<span class="number"> </span></p>
+            </div>
+            <div class="dr04-abstract">
+                <ul>
+                    <li>Warum soll ich Dienst in der Armee leisten?</li>
+                    <li>Welchen Auftrag hat die Armee?</li>
+                    <li>Welche Dienstarten gibt es?</li>
+                </ul>
+            </div>
+            <div class="dr04-body">
+                <p id="chapterlink_1" class="chapterlink"><span class="title">Dienstreglement (1): </span>Grundsätze für Führung, Ausbildung und Erziehung sowie Dienstbetrieb - Rechte und Pflichten - Grundlagen und Zusammenhänge, die für alle AdAs von Bedeutung sind.</p>
+                <p id="chapterlink_4" class="chapterlink"><span class="title">Auftrag der Armee (4): </span>erhinderung von Kriegen und Erhaltung des Friedens - Verteidigung und Raumsicherung - Friedensförderung - Existenzsicherung (subsidiäre Einsätze).</p>
+                <p id="chapterlink_3" class="chapterlink"><span class="title">Dienstarten (3): </span>Ausbildungsdienst,  Friedensförderungsdienst, Assistenzdienst, Aktivdienst - Vereidigung im Aktivdienst (Eid oder Gelübde).</p>
+                <p id="chapterlink_5-6" class="chapterlink"><span class="title">Prinzipien (5-6): </span>Miliz-prinzip - Allgemeine Wehrpflicht - Unterstellung der Armee unter zivile Gewalt.</p>
+                <div class="image_container">
+                    <div class="medialink" id="medialink_1"></div>
+                    <img src="resources/images/jet.png" class="full_width" alt=""/>
+                </div>
+            </div>
+        </div>
+
+        <div id="flyer03" class="content">
+            <div class="dr04-head">
+                <p>
+                    Führungsgrundsätze <span class="number">(9-17)</span>
+                </p>
+                <p>
+                    &nbsp; <span class="number"></span>
+                </p>
+                <p>
+                    &nbsp; <span class="number"></span>
+                </p>
+            </div>
+            <div class="dr04-abstract">
+                <ul>
+                    <li>Was ist mit Führung gemeint? </li>
+                    <li>Warum ist Disziplin wichtig?</li>
+                    <li>Wie wird in der Armee kommuniziert? </li>
+                </ul>
+            </div>
+            <div class="dr04-body">
+                <p id="chapterlink_9-10-11-12-13-14-15-16" class="chapterlink">
+                    <span class="title">Vorgesetzte (9-16): </span>Führen durch Zielvorgabe = Handeln der Unterstellten auf das Erreichen eines Ziels ausrichten – Vorgesetzte tragen die Verantwortung, kontrollieren die Zielerreichung, informieren – Vorbildfunktion, Autorität.
+                </p>
+                <p id="chapterlink_10-11-12-13" class="chapterlink">
+                    <span class="title">Unterstellte (10- 13): </span>Gewisse Handlungsfreiheit bei der Wahl des einzuschlagenden Weges zum Ziel – Aktives Mitdenken, Selbständigkeit, Initiative – Verantwortlich für die Ausführung eines Auftrags, Disziplin.
+                </p>
+                <p id="chapterlink_15-17" class="chapterlink">
+                    <span class="title">Wichtig (15, 17): </span>Kommunikation – Gegenseitige Achtung – Zusammenhalt und Leistung.
+                </p>
+                <img src="resources/images/fuehrungsgrundsaetze.jpg" class="full_width" alt=""/>
+            </div>
+        </div>
+
+        <div id="flyer04" class="content">
+            <div class="dr04-head">
+                <p>
+                    Struktur der Führung <span class="number">(18-21)</span>
+                </p>
+                <p>
+                    Mannschaft und Kader <span class="number">(22 – 27)</span>
+                </p>
+                <p>
+                    Die Einheit und ihr Kader <span class="number">(28 – 31)</span>
+                </p>
+            </div>
+            <div class="dr04-abstract">
+                <ul>
+                    <li>Wie ist die Armee organisiert?</li>
+                    <li>Welche Ränge und Abzeichen gibt es?</li>
+                    <li>Was ist eine Einheit?</li>
+                </ul>
+            </div>
+            <div class="dr04-body">
+                <p id="chapterlink_18" class="chapterlink">
+                    <span class="title">Hierarchie der Verbände (18): </span>Gruppe, Zug, Einheit (Kompanie, Batterie, Kolonne, Staffel) – Truppenkörper (Bataillon, Abteilung, Geschwader, Kommando) – Grosser Verband (Brigade, Lehrverband, Territorialregion)
+                </p>
+                <p id="chapterlink_22" class="chapterlink">
+                    <span class="title">Grade der Mannschaft (22): </span>Rekrut, Soldat, Gefreiter, Obergefreiter.
+                </p>
+                <div class="image_container right">
+                        <div class="medialink" id="medialink_2"></div>
+                        <img src="resources/images/struktur_fuehrung.jpg" alt="" class="third_width"/>
+                </div>
+                <p id="chapterlink_22" class="chapterlink">
+                    <span class="title">Unteroffiziere (22): </span>Korporal, Wachtmeister, Oberwachtmeister – Feldweibel, Fourier, Hauptfeldweibel, Adjutantunteroffizier, Stabsadjutant, Hauptadjutant, Chefadjutant (Höhere Unteroffiziere).
+                </p>
+                <p id="chapterlink_22" class="chapterlink">
+                    <span class="title">Offiziere (22): </span>Leutnant, Oberleutnant (Subalternoffiziere) – Hauptmann (Hauptleute) – Major, Oberstleutnant, Oberst (Stabsoffiziere) – Brigadier, Divisionär, Korpskommandant (Höhere Stabsoffiziere) – General (Oberbefehlshaber der Armee).
+                </p>
+            </div>
+        </div>
+
+        <div id="flyer05" class="content">
+            <div class="dr04-head">
+                <p>
+                    Militärische Ausbildung und Erziehung <span class="number">(32-40)</span>
+                </p>
+                <p>
+                    &nbsp; <span class="number"></span>
+                </p>
+                <p>
+                    &nbsp; <span class="number"></span>
+                </p>
+            </div>
+            <div class="dr04-abstract">
+                <ul>
+                    <li>Wie ist die militärische Ausbildung organisiert?</li>
+                    <li>Wie wird Ausbildungserfolg beurteilt? </li>
+                    <li>Was ist ein Truppenbesuch?</li>
+                </ul>
+            </div>
+            <div class="dr04-body">
+                <p id="chapterlink_32-33" class="chapterlink">
+                    <span class="title">Ausbildungsziele (32, 33): </span>Fähigkeit zur Auftragserfüllung im Krieg und in anderen Krisensituationen, auch unter Einsatz des Lebens – Disziplin, Initiative, Selbständigkeit, Einordnung, Zusammenarbeit, Durchhaltevermögen – Militärisches Können und Wissen – Kameradschaft, Vertrauen in die Führung, Handeln im Sinn des Verbandes.
+                </p>
+                <p id="chapterlink_37-38-39-40" class="chapterlink">
+                    <span class="title">Ausbildungserfolg (37-40): </span>Erfordert klare Zielsetzungen, wird durch intensives Training erreicht – Drillmässiges Üben bei der Beherrschung von Waffen und Geräten – Truppenbesuche, Inspektionen.
+                </p>
+                <div class="image_container">
+                    <div class="medialink" id="medialink_3"></div>
+                    <img src="resources/images/ausbildung_erziehung.jpg" class="full_width" alt=""/>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div id="flyer06" class="content">
+            <div class="dr04-head">
+                <p>
+                    Dienstbetrieb <span class="number">(41-62)</span>
+                </p>
+                <p>
+                    &nbsp; <span class="number"></span>
+                </p>
+                <p>
+                    &nbsp; <span class="number"></span>
+                </p>
+            </div>
+            <div class="dr04-abstract">
+                <ul>
+                    <li>Was ist der "Dienstbetrieb"?</li>
+                    <li>Wann bekomme ich Urlaub? </li>
+                    <li>Wen muss ich grüssen?</li>
+                </ul>
+            </div>
+            <div class="dr04-body">
+                <p id="chapterlink_41-44-46" class="chapterlink">
+                    <span class="title">Dienstbetrieb (41, 44, 46): </span>Organisierter Verlauf des täglichen Lebens und der Arbeit im militärischen Verband – Arbeitsprogramm: durch Kommandant erlassen – Tagesbefehl: regelt den einzelnen Diensttag.
+                </p>
+                <p id="chapterlink_47" class="chapterlink">
+                    <span class="title">Dienstzeit (47): </span>Arbeits-, Ruhe- und Freizeit – Arbeitszeit: von Tagwache bis Haupt-/Abendverlesen – Ruhezeit: dient der Erholung – Freizeit: Ausgang und Urlaub.
+                </p>
+                <p id="chapterlink_49-50-51" class="chapterlink">
+                    <span class="title">Retablierung (49-51): </span>Parkdienst und Innerer Dienst – Parkdienst: Wartung persönliche Waffe, Kollektivwaffen, Munition, Fahrzeuge, Geräte – Innerer Dienst: Wartung persönliche Ausrüstung und Korpsmaterial, Körperpflege, Reinigung der Unterkunft.
+                </p>
+                <p id="chapterlink_48-52-54" class="chapterlink">
+                    <span class="title">Verlesen (48, 52, 54): </span>Antritts-, Haupt- und Abendverlesen.
+                </p>
+            </div>
+        </div>
+
+        <div id="flyer07" class="content">
+            <div class="dr04-head">
+                <p>
+                    Dienstbetrieb (fortsetzung): <span class="number">(41, 44, 46)</span>
+                </p>
+                <p>
+                    &nbsp; <span class="number"></span>
+                </p>
+                <p>
+                    &nbsp; <span class="number"></span>
+                </p>
+            </div>
+            <div class="dr04-abstract">
+                <ul>
+                    <li>Was ist der "Dienstbetrieb"?</li>
+                    <li>Wann bekomme ich Urlaub? </li>
+                    <li>Wen muss ich grüssen?</li>
+                </ul>
+            </div>
+            <div class="dr04-body">
+                <p id="chapterlink_55" class="chapterlink">
+                    <span class="title">Urlaub (55): </span>Allgemeiner Urlaub, persönlicher Urlaub – Ausgangsuniform zum und aus dem Urlaub – Im Urlaub Zivilkleider erlaubt.
+                </p>
+                <p id="chapterlink_56" class="chapterlink">
+                    <span class="title">Beratung und Betreuung (56): </span>Durch Kommandanten, Truppenarzt, Armeeseelsorger oder Sozialdienst der Armee.
+                </p>
+                <p id="chapterlink_57" class="chapterlink">
+                    <span class="title">Sprache (57): </span>Muttersprache der Unterstellten – Bei gemischtsprachigen Verbänden Schrift- bzw. Hochsprache.
+                </p>
+                <p id="chapterlink_58" class="chapterlink">
+                    <span class="title">Uniform und Auftreten (58): </span>Wer Uniform trägt, repräsentiert die Truppe und ist zu korrektem Auftreten und Verhalten verpflichtet!
+                </p>
+                <p id="chapterlink_59" class="chapterlink">
+                    <span class="title">Gruss und Meldung (59): </span>Gegenüber Ranghöheren oder Vorgesetzten, entfalteten Feldzeichen, beim Erklingen der eigenen oder fremder Nationalhymnen.
+                </p>
+            </div>
+        </div>
+
+        <div id="flyer08" class="content">
+            <div class="dr04-head">
+                <p>
+                    Seelsorge, Gottesdienst, Bestattung, Testament <span class="number">(63-67)</span>
+                </p>
+                <p>
+                    &nbsp; <span class="number"></span>
+                </p>
+                <p>
+                    &nbsp; <span class="number"></span>
+                </p>
+            </div>
+            <div class="dr04-abstract">
+                <ul>
+                    <li>Wie steht die Armee zur Religion?</li>
+                    <li>Wer kann zum Truppengottesdienst gehen? </li>
+                    <li>Was passiert, wenn jemand verletzt oder getötet wird?</li>
+                </ul>
+            </div>
+            <div class="dr04-body">
+                <p id="chapterlink_63" class="chapterlink">
+                    <span class="title">Achtung der Religionen (63): </span>Angehörige der Armee respektieren den Glauben anderer Personen.
+                </p>
+                <p id="chapterlink_64" class="chapterlink">
+                    <span class="title">Seelsorge (64): </span>AdAs haben Recht auf Betreuung durch Armeeseelsorger (evangelisch-reformiert, römisch-katholisch).
+                </p>
+                <p id="chapterlink_65" class="chapterlink">
+                    <span class="title">Gottesdienst (65): </span>Truppengottesdienste an Sonn- und Feiertagen, oder Besuch zivilen Gottesdienstes – Andere Konfessionen: Besuch ihres zivilen Gottesdienstes nach Möglichkeit – Wer keinen Gottesdienst besucht, wird dispensiert oder zu dienstlicher Arbeit befohlen.
+                </p>
+                <p id="chapterlink_66" class="chapterlink">
+                    <span class="title">Bestattung (66): </span>Militärische Bestattung von AdAs, die im Dienst verstorben sind.
+                </p>
+                <p id="chapterlink_67" class="chapterlink">
+                    <span class="title">Soldatentestament (67): </span>Nottestament im Fall von Kriegsereignissen oder ausserordentlichen Umständen.
+                </p>
+            </div>
+        </div>
+
+        <div id="flyer09" class="content">
+            <div class="dr04-head">
+                <p>
+                    Polizeibefugnisse der Truppe und Wachtdienst <span class="number">(68-76)</span>
+                </p>
+                <p>
+                    &nbsp;<span class="number"></span>
+                </p>
+                <p>
+                    &nbsp;<span class="number"></span>
+                </p>
+            </div>
+            <div class="dr04-abstract">
+                <ul>
+                    <li>Was ist der Wachtdienst?</li>
+                    <li>Welche Polizeibefugnisse hat die Armee?</li>
+                    <li>Wann darf ich von der Schusswaffe Gebrauch machen?</li>
+                </ul>
+            </div>
+            <div class="dr04-body">
+                <p id="chapterlink_68-69-70-71-72-73-74-75-76" class="chapterlink">
+                    <span class="title">Polizeibefugnisse der Truppe (68-76): </span>Abwehr von Gefahren für die eigene Sicherheit, Beseitigung von Störungen ihrer Ordnung – Verhältnismässigkeit beachten!
+                </p>
+                <p id="chapterlink_71" class="chapterlink">
+                    <span class="title">Polizeiliche Zwangsmassnahmen (71): </span>Personen anhalten, Identität feststellen, wegweisen, fernhalten, befragen, durchsuchen, vorläufig festnehmen – Sachen kontrollieren, beschlagnahmen – Körperlichen Zwang anwenden, im äussersten Fall Schusswaffe gebrauchen.
+                </p>
+                <p id="chapterlink_72" class="chapterlink">
+                    <span class="title">Schusswaffengebrauch (72): </span>In Notwehr, im Notstand, zur Erfüllung eines Schutz- oder Bewachungsauftrags.
+                </p>
+                <p id="chapterlink_73-74" class="chapterlink">
+                    <span class="title">Wachtdienst (73, 74): </span>Wache schützt die Truppe, ihr Material, Einrichtungen und Anlagen vor Angriffen und Störungen – Militärisches Polizeiorgan – In der Regel mit Schusswaffe und Kampfmunition.
+                </p>
+            </div>
+        </div>
+
+        <div id="flyer10" class="content">
+            <div class="dr04-head">
+                <p>
+                    Pflichten <span class="number">(77-92)</span>
+                </p>
+                <p>
+                    Militärstrafrecht <span class="number">(Kap.9)</span>
+                </p>
+                <p>
+                    &nbsp;<span class="number"></span>
+                </p>
+            </div>
+            <div class="dr04-abstract">
+                <ul>
+                    <li>Welche Pflichten habe ich als Soldat? </li>
+                    <li>Warum muss ich Befehlen Folge leisten?</li>
+                    <li>Welche Strafen gibt es bei der Armee?</li>
+                </ul>
+            </div>
+            <div class="dr04-body">
+                <p id="chapterlink_77" class="chapterlink">
+                    <span class="title">Grundpflichten (77): </span>Der Schweizerischen Eidgenossenschaft dienen, ihre Verfassung achten, Aufgaben nach besten Kräften erfüllen und in Kameradschaft zusammenarbeiten – Dienstlich notwendige Risiken und Gefahren auf sich nehmen.
+                </p>
+                <p id="chapterlink_78-80-82-83-86-88" class="chapterlink">
+                    <span class="title">Weitere Pflichten (78, 80, 82, 83, 86, 88): </span>Pflichten nach Kriegsvölkerrecht, Gehorsam, Kameradschaft, Verschwiegenheit, Sorgfaltspflichten – Ansteckende Krankheiten oder gesundheitliche Beeinträchtigungen melden.
+                </p>
+                <p id="chapterlink_89-91" class="chapterlink">
+                    <span class="title">Pflichten ausser Dienst (89, 91): </span>Schiessübungen – Auslandurlaub melden (länger als 12 Monate) – Einrückungspflicht, Bereitschaft.
+                </p>
+                <p id="chapterlink_92-900" class="chapterlink">
+                    <span class="title">Strafen (92, Kap. 9): </span>Verweis, Ausgangssperre, Disziplinarbusse, Arrest.
+                </p>
+            </div>
+        </div>
+
+        <div id="flyer11" class="content">
+            <div class="dr04-head">
+                <p id="chapterlink_93-94-95-96-97-98-99-100-101" class="chapterlink">
+                    Rechte <span class="number">(93-101)</span>
+                </p>
+                <p id="chapterlink_102-103-104-105-106-107-108-109" class="chapterlink">
+                    Rechtsschutz <span class="number">(102-109)</span>
+                </p>
+            </div>
+            <div class="dr04-abstract">
+                <ul>
+                    <li>Welche Rechte habe ich als Soldat?</li>
+                    <li>Was tun, wenn ich mich ungerecht behandelt fühle?</li>
+                    <li>Wie läuft eine Dienstbeschwerde ab?</li>
+                </ul>
+            </div>
+            <div class="dr04-body">
+                <p id="chapterlink_93-94-95-96" class="chapterlink">
+                    <span class="title">Grund- und Freiheitsrechte (93-96): </span>Schutz der Persönlichkeit, Glaubens- und Gewissensfreiheit, freie Meinungsäusserung, Ausübung politischer Rechte – Einschränkungen, soweit die Erfüllung des Auftrags es verlangt – Einschränkung politischer Betätigung im Umfeld der Armee.
+                </p>
+                <p id="chapterlink_97" class="chapterlink">
+                    <span class="title">Ausübung öffentlicher Ämter (97): </span>Urlaub für Teilnahme an Sitzungen und Amtshandlungen.
+                </p>
+                <p id="chapterlink_98-99-101" class="chapterlink">
+                    <span class="title">Weitere Rechte (98, 99, 101): </span>Recht auf Information – Recht, Anregungen zum Dienst zu geben – Recht auf Sold, Unterkunft, Verpflegung, besondere Leistungen.
+                </p>
+                <p id="chapterlink_102-103-104-105-106-107-108-109" class="chapterlink">
+                    <span class="title">Rechtsschutz (102-109): </span>Persönliche Aussprache mit dem Kommandanten – Dienstbeschwerde beim vorgesetzten Kommandanten innert 5 Tagen.
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="reglementation" class="hidden">
+
+        <div id="dr_chapter1" >  
+            <h1 id="ch1">1. Kapitel: Einleitung</h1>
+            <div id="p1"><h3>1 Zweck</h3>
+            <p>
+                Das Dienstreglement:
+            </p>
+            <dl>
+                <dt>a.</dt>
+                <dd>legt die allgemeinen Grundsätze für Führung, Ausbildung und Erziehung sowie Dienstbetrieb fest;</dd>
+                <dt>b.</dt>
+                <dd>umschreibt die Rechte und Pflichten der Angehörigen der Armee;</dd>
+                <dt>c.</dt>
+                <dd>orientiert über Grundlagen und Zusammenhänge, die für die Angehörigen der Armee von Bedeutung sind.</dd>
+            </dl>
+            </div><div id="p2"><h3>2 Geltungsbereich</h3>
+            <p>
+                <sup>1</sup>&nbsp;Das Dienstreglement ist verbindlich für alle Angehörigen der Armee während der Dienstzeit im Ausbildungsdienst, im Assistenzdienst und im Aktivdienst sowie für die Stellungspflichtigen während der Rekrutierung. Im Friedensförderungsdienst gilt es sinngemäss; zusätzlich gilt der Anhang.
+            </p>
+            <p>
+                <sup>2</sup>&nbsp;Ausserhalb der Dienstzeit gilt das Dienstreglement für die Angehörigen der Armee immer dann, wenn sie dienstliche Pflichten zu erfüllen haben oder wenn sie in Uniform auftreten.
+            </p>
+            <p>
+                <sup>3</sup>&nbsp;Für das militärische Personal gilt das Dienstreglement während der Ausübung des Dienstes. Ausserhalb dieser Zeit gilt es immer dann, wenn dienstliche Pflichten zu erfüllen sind oder wenn die Uniform getragen wird.
+            </p>
+            <p>
+                <sup>4</sup>&nbsp;Für die Angehörigen des Rotkreuzdienstes gilt das Dienstreglement in gleicher Weise wie für die Angehörigen der Armee.
+            </p>
+            </div><div id="p3"><h3>3 Begriffe</h3>
+            <p>
+                <sup>1</sup>&nbsp;Angehöriger der Armee ist jeder, der ausgehoben und für diensttauglich erklärt ist, bis er aus der Militärdienstpflicht entlassen wird. Auch wer zum militärischen Personal gehört, gilt als Angehöriger der Armee.
+            </p>
+            <p>
+                <sup>2</sup>&nbsp;Die Dienstarten sind:
+            </p>
+            <dl>
+                <dt>a.</dt>
+                <dd>Ausbildungsdienst: insbesondere der Einsatz in Schulen, Lehrgängen, Kursen, Übungen und Rapporten;</dd>
+                <dt>b.</dt>
+                <dd>Friedensförderungsdienst: der freiwillige Einsatz bei friedenserhaltenden Operationen im internationalen Rahmen auf der Grundlage eines UNO- oder OSZE-Mandates;</dd>
+                <dt>c.</dt>
+                <dd>Assistenzdienst: der Einsatz zur Unterstützung ziviler Behörden bei Aufgaben von nationaler Bedeutung, wenn die zivilen Mittel nicht mehr ausreichen sowie zur Erhöhung der Bereitschaft der Armee und zur Katastrophenhilfe im Ausland;</dd>
+                <dt>d.</dt>
+                <dd>Aktivdienst: der Einsatz im Landesverteidigungsdienst zur Abwehr äusserer Bedrohungen sowie der Einsatz im Ordnungsdienst zur Abwehr schwerwiegender innerer Bedrohungen.</dd>
+            </dl>
+            <p>
+                <sup>3</sup>&nbsp;Die Dienstzeit ist die Zeit, während der die Angehörigen der Armee im Militärdienst stehen. Sie beginnt mit dem Antritt der Einrückungsreise und endet mit dem Abschluss der Entlassungsreise. Sie umfasst Arbeitszeit, Ruhezeit und Freizeit. Als Freizeit gelten Ausgang und Urlaub.
+            </p>
+            <p>
+                <sup>4</sup>&nbsp;Wo in diesem Dienstreglement aus sachlichen Erwägungen männliche Formen wie «der einzelne», «der Angehörige der Armee», «der Kommandant» gebraucht werden müssen, gelten diese Bezeichnungen für weibliche und männliche Angehörige der Armee.
+            </p>
+            </div>
+        </div>
+        <div id="dr_chapter2" >
+            <h1 id="ch2">2. Kapitel: Grundlagen</h1>
+            <p>
+                Die Schweizerische Eidgenossenschaft strebt nach Frieden und Bewahrung ihrer freiheitlichen und demokratischen Grundordnung. Sie will ihr Staatsgebiet im Falle von kriegerischen Konflikten verteidigen und die Bevölkerung und deren Lebensgrundlagen schützen. Sie will aktiv zur Sicherung des Friedens in der Welt beitragen und sich für eine menschenwürdige Welt einsetzen.
+            </p>
+            <p>
+                Ziel der Sicherheitspolitik ist es, unserem Land den Frieden und die grösstmögliche Handlungsfreiheit zu erhalten. Die Schweiz richtet alle geeigneten Mittel auf dieses Ziel aus und arbeitet eng mit der internationalen Staatengemeinschaft zusammen.
+            </p>
+            <p>
+                Für die Bewältigung der sicherheitspolitischen Aufgaben stehen der Schweiz folgende Instrumente zur Verfügung: Aussenpolitik, Armee, Bevölkerungsschutz, Wirtschaftspolitik, Landesversorgung, Staatsschutz und Polizei sowie Information und Kommunikation. <sup><a href="#fn4">4</a></sup>
+            </p>
+            <p>
+                Im Rahmen der Sicherheitspolitik kommt der Armee eine zentrale Bedeutung zu. <sup><a href="#fn5">5</a></sup>
+            </p>
+            <div id="p4"><h3>4 Auftrag der Armee</h3>
+            <p>
+                Die Armee hat den Auftrag:
+            </p>
+            <dl>
+                <dt>a.</dt>
+                <dd>zur Verhinderung von Kriegen und Erhaltung des Friedens beizutragen;</dd>
+                <dt>b.</dt>
+                <dd>die Schweiz zu verteidigen und ihre Bevölkerung zu schützen;</dd>
+                <dt>c.</dt>
+                <dd>zur Friedensförderung im internationalen Rahmen Beiträge zu leisten;</dd>
+                <dt>d.</dt>
+                <dd>bei schwerwiegenden Bedrohungen der inneren Sicherheit sowie insbesondere bei der Bewältigung von Katastrophen im In- und Ausland die zivilen Behörden zu unterstützen, wenn deren Mittel nicht mehr ausreichen.</dd>
+            </dl>
+            </div><div id="p5"><h3>5 Militärdienstpflicht</h3>
+            <p>
+                Unsere Armee ist grundsätzlich nach dem Milizprinzip organisiert. Sie beruht auf dem Grundsatz der Militärdienstpflicht für alle Schweizer Bürger. Schweizerinnen können sich freiwillig zum Militärdienst melden.
+            </p>
+            </div><div id="p6"><h3>6 Unterstellung der Armee unter die zivile Gewalt</h3>
+            <p>
+                Nach Verfassung und Gesetz ist die Armee der zivilen Gewalt unterstellt. Ihre oberste leitende und vollziehende Behörde ist der Bundesrat. Übergeordnet sind dabei Beschlüsse, die nach Verfassung oder Gesetz der Bundesversammlung zustehen.
+            </p>
+            </div><div id="p7"><h3>7 Vereidigung im Aktivdienst</h3>
+            <p>
+                <sup>1</sup> &nbsp;Im Aktivdienst bekräftigen die Angehörigen der Armee ihre Bereitschaft zur militärischen Pflichterfüllung mit dem Eid.
+            </p>
+            <p>
+                <sup>2</sup> &nbsp;Bei der Abnahme des Eides vertritt ein Mitglied einer zivilen Behörde oder ein Kommandant den Bundesrat.
+            </p>
+            <p>
+                <sup>3</sup> &nbsp;Der Vertreter des Bundesrates oder der Kommandant der zu vereidigenden Truppe verliest die Botschaft des Bundesrates, in der das Aufgebot zum Aktivdienst begründet wird.
+            </p>
+            <p>
+                <sup>4</sup> &nbsp;Anschliessend spricht der Vertreter des Bundesrates die Eidesformel Satz für Satz vor. Die zu Vereidigenden sprechen sie Satz für Satz nach.
+            </p>
+            <p>
+                <sup>5</sup> &nbsp;Wer nicht schwört, legt stattdessen das Gelübde ab.
+            </p>
+            </div><div id="p8"><h3>8 Eid/Gelübde</h3>
+            <p>
+                «Ich schwöre/Ich gelobe,
+            </p>
+            <dl compact="compact">
+                <dt>&ndash;</dt>
+                <dd>der Schweizerischen Eidgenossenschaft mit ganzer Kraft zu dienen;</dd>
+                <dt>&ndash;</dt>
+                <dd>Recht und Freiheit des Schweizervolkes tapfer zu verteidigen;</dd>
+                <dt>&ndash;</dt>
+                <dd>meine Pflichten auch unter Einsatz des Lebens zu erfüllen;</dd>
+                <dt>&ndash;</dt>
+                <dd>der eigenen Truppe treu zu bleiben und in Kameradschaft zusammenzuhalten;</dd>
+                <dt>&ndash;</dt>
+                <dd>die Regeln des Kriegsvölkerrechts einzuhalten.»</dd>
+            </dl>
+            </div>
+        </div>
+        <div id="dr_chapter3" >
+            <h1 id="ch3">3. Kapitel: Führung</h1>
+            <p>
+                Die Armee ist eine grosse und vielgestaltige Institution. Ihren grundlegenden Auftrag - verteidigen, schützen, helfen - kann sie nur erfüllen, wenn viele Kräfte zusammenwirken. Truppen mit unterschiedlicher Ausbildung und Ausrüstung und Spezialisten müssen Teilaufträge erfüllen und auf das gemeinsame Ziel hin zusammenarbeiten. Die Armee braucht deshalb eine effiziente Führungsorganisation. Sie ist in Verbände gegliedert und hierarchisch organisiert.
+            </p>
+            <p>
+                Befehl und Gehorsam sind der deutlichste Ausdruck der militärischen Führung. Führung umfasst aber, auch im Ernstfall, sehr viel mehr als die Befehlsgebung. Wer führt, muss Ziele bestimmen, Entschlüsse fassen und Aufträge erteilen. Führen heisst auch Informationen verarbeiten und sie gezielt weitergeben. Führende müssen die Arbeit der Unterstellten koordinieren und kontrollieren, und sie müssen mit Gleichgestellten zusammenarbeiten. Sie müssen motivieren, Konflikte vermeiden oder schlichten und für das Wohl ihrer Unterstellten sorgen. Auf allen Stufen sind das Recht und die Pflicht zu führen mit Verantwortung gepaart.
+            </p>
+            <p>
+                Auch aufseiten der Unterstellten ist mehr gefordert als Gehorsam. Im Rahmen ihres Auftrags müssen sie diszipliniert, selbständig und eigenverantwortlich handeln. Sie müssen Vorgesetzte und Gleichgestellte informieren und mit ihnen wirkungsvoll zusammenarbeiten.
+            </p>
+            <p>
+                In der Armee sind alle Vorgesetzten zugleich auch Unterstellte. Wer Befehlskompetenz hat, ist seinerseits zu Gehorsam verpflichtet. Das gilt selbst für den General, der dem Parlament und dem Bundesrat verantwortlich ist. Auf allen Stufen der militärischen Hierarchie sind Disziplin und Selbständigkeit ebenso gefordert wie die Bereitschaft und die Fähigkeit zur Zusammenarbeit.
+            </p>
+            <p>
+                In den Verbänden der Armee finden sich Bürger und Bürgerinnen verschiedener Herkunft, verschiedenen Alters und mit verschiedener Ausbildung, verschiedenen Lebensgewohnheiten und Interessen. Was sie zusammenführt, ist der gemeinsame Auftrag. Diesen zu erfüllen gelingt aber nur, wenn sich die einzelnen im Blick auf den Auftrag zu einer Gemeinschaft zusammenschliessen.
+            </p>
+            <h2 id="ch3_1">1. Abschnitt: Führungsgrundsätze</h2>
+            <div id="p9"><h3>9 Führung</h3>
+            <p>
+                <sup>1</sup>Führen heisst: das Handeln der Unterstellten auf das Erreichen eines Ziels ausrichten.
+            </p>
+            <p>
+                <sup>2</sup>Die Leistung eines Verbandes entsteht aus dem planvollen Zusammenwirken der einzelnen. Führen im Militär heisst deshalb insbesondere: den einzelnen dazu bringen, seine ganze Kraft für die gemeinsame Erfüllung des Auftrags einzusetzen, im Ernstfall auch unter Einsatz des Lebens.
+            </p>
+            </div><div id="p10"><h3>10 Führen durch Auftrag</h3>
+            <p>
+                Die Vorgesetzten bestimmen die Ziele, die erreicht werden müssen. Ihren Unterstellten lassen sie bei der Wahl des einzuschlagenden Weges möglichst grosse Handlungsfreiheit. Sie schränken diese nur dort ein, wo es zur Wahrung des Zusammenhangs nötig ist.
+            </p>
+            </div><div id="p11"><h3>11 Mitdenken und Engagement</h3>
+            <p>
+                <sup>1</sup>Führen durch Auftrag verlangt von den Vorgesetzten Mut, Vertrauen und Respekt für die Handlungsfreiheit der Unterstellten.
+            </p>
+            <p>
+                <sup>2</sup>Von den Unterstellten verlangt diese Art der Führung aktives Mitdenken und die Bereitschaft, selbständig und initiativ im Sinne des Auftrags zu handeln.
+            </p>
+            </div><div id="p12"><h3>12 Verantwortung</h3>
+            <p>
+                <sup>1</sup>Der Vorgesetzte trägt die Verantwortung für lagegerechte und zeitgerechte Aufträge. Er erteilt Aufträge erst, wenn er die Folgen bedacht hat. Er berücksichtigt dabei die Fähigkeiten der Unterstellten.
+            </p>
+            <p>
+                <sup>2</sup>Bei der Vorbereitung seiner Entschlüsse kann der Vorgesetzte Unterstellte beiziehen. Die Entschlüsse verantwortet er indessen allein.
+            </p>
+            <p>
+                <sup>3</sup>Der Vorgesetzte kontrolliert, ob die gesetzten Ziele erreicht werden.
+            </p>
+            <p>
+                <sup>4</sup>Der Vorgesetzte ist für das Wohl und den Schutz seiner Unterstellten verantwortlich. Er setzt sie nicht unnötig Risiken und Gefahren aus.
+            </p>
+            <p>
+                <sup>5</sup>Die Unterstellten tragen auf allen Stufen ihrerseits Verantwortung. Sie sind im Rahmen der Handlungsfreiheit, die ihnen eingeräumt wird, verantwortlich für die Ausführung eines Auftrags.
+            </p>
+            </div><div id="p13"><h3>13 Disziplin</h3>
+            <p>
+                <sup>1</sup>Das Erreichen der gesetzten Ziele setzt bei allen Angehörigen eines militärischen Verbandes diszipliniertes Verhalten voraus. Disziplin heisst: Der einzelne stellt seine persönlichen Interessen und Wünsche zugunsten des Ganzen zurück und gibt im Sinne des Auftrags sein Bestes.
+            </p>
+            <p>
+                <sup>2</sup>Disziplin hat dann die grösste Wirkung, wenn sie mit Initiative und Selbständigkeit verbunden ist.
+            </p>
+            </div><div id="p14"><h3>14 Information</h3>
+            <p>
+                <sup>1</sup>Damit die Ziele eines Verbandes erreicht werden können, müssen die Unterstellten die Absicht ihres Vorgesetzten verstehen. Der Vorgesetzte nutzt deshalb jede Gelegenheit zur Information. Wenn immer möglich, gibt er die Überlegungen bekannt, die zu seinem Entschluss geführt haben. Diese Information ist umso wichtiger, je mehr der Vorgesetzte auf die Selbständigkeit und Initiative der einzelnen Unterstellten zählt.
+            </p>
+            <p>
+                <sup>2</sup>Die Unterstellten informieren von sich aus ihren Vorgesetzten über Sachverhalte, die für die Erfüllung des Auftrags von Bedeutung sein können. Diese Information ist besonders wichtig, wenn ihre Fachkenntnisse und ihr Spezialwissen für den Erfolg des Verbandes ausschlaggebend sein können.
+            </p>
+            <p>
+                <sup>3</sup>Jeder Angehörige der Armee bemüht sich, die Informationen zu erhalten, die für die Erfüllung seines Auftrags wichtig sind.
+            </p>
+            </div><div id="p15"><h3>15 Kommunikation</h3>
+            <p>
+                Die Aufgaben eines Verbandes sind oft schwierig und komplex. Sie können nur gelöst werden, wenn sich die Angehörigen des Verbandes laufend über ihre Arbeit verständigen. Regelmässige Kommunikation trägt entscheidend dazu bei, dass alle Beteiligten sich mit ihrem Auftrag identifizieren und ihr Bestes leisten können. Zwischen Vorgesetzten und Unterstellten schafft sie jenes Vertrauen, welches in Zeitnot und unter schwierigen Umständen das Führen mit knappen Befehlen und Anordnungen ermöglicht.
+            </p>
+            </div><div id="p16"><h3>16 Vorbild</h3>
+            <p>
+                Führung braucht Autorität. Diese erwächst den Vorgesetzten insbesondere aus ihrer fachlichen und persönlichen Glaubwürdigkeit. Vorgesetzte führen in erster Linie durch ihr persönliches Vorbild. Sie leben Disziplin und Engagement vor und wirken dadurch erzieherisch auf ihre Unterstellten.
+            </p>
+            </div><div id="p17"><h3>17 Zusammenhalt und Leistung</h3>
+            <p>
+                Vorgesetzte und Unterstellte begegnen sich in gegenseitiger Achtung. Sie vertrauen einander und setzen sich dafür ein, den Zusammenhalt und die Leistungskraft des Verbandes zu stärken. Die Gewissheit, sich aufeinander verlassen zu können, erleichtert die Pflichterfüllung und das Erreichen des gemeinsamen Ziels.
+            </p>
+            </div>
+            <h2 id="ch3_2">2. Abschnitt: Struktur der Führung</h2>
+            <div id="p18"><h3>18 Hierarchie der Verbände</h3>
+            <p>
+                <sup>1</sup>Die Armee ist in Verbände gegliedert und hierarchisch organisiert. Die Verbände können dem Auftrag entsprechend zusammengestellt werden. Die Unterstellungsverhältnisse können hiefür ändern.
+            </p>
+            <p>
+                <sup>2</sup>Die Verbände der verschiedenen Stufen werden wie folgt bezeichnet (aufsteigende Reihenfolge):
+            </p>
+            <ul>
+                <li>Trupp,</li>
+                <li>Gruppe,</li>
+                <li>Zug,</li>
+                <li>Einheit (Kompanie, Batterie, Kolonne, Staffel),</li>
+                <li>Truppenkörper (Bataillon, Abteilung, Geschwader, Kommando),</li>
+                <li>Grosser Verband (Brigade, Lehrverband, Territorialregion).</li>
+            </ul>
+            </div><div id="p19"><h3>19 Kommandoordnung</h3>
+            <p>
+                <sup>1</sup>Die Kommandoordnung regelt die Unterstellungen. Sie ist Voraussetzung für eine erfolgreiche Führung.
+            </p>
+            <p>
+                <sup>2</sup>Wer einen Verband führt, ist der Vorgesetzte aller Angehörigen dieses Verbandes, einschliesslich der nur vorübergehend Unterstellten.
+            </p>
+            <p>
+                <sup>3</sup>Alle Angehörigen der Armee müssen wissen, wem sie unterstellt sind und wie die Verantwortungen geregelt sind.
+            </p>
+            </div><div id="p20"><h3>20 Dienstweg</h3>
+            <p>
+                <sup>1</sup>Der Dienstweg ergibt sich aus der Kommandoordnung. Er verbindet die einzelnen Kommandostufen, ohne eine von ihnen zu übergehen.
+            </p>
+            <p>
+                <sup>2</sup>Befehle, Meldungen, Anträge und Gesuche erfolgen auf dem Dienstweg. Mitteilungen zum Zweck der gegenseitigen Information und zur Sicherstellung von Querverbindungen sind nicht an den Dienstweg gebunden.
+            </p>
+            <p>
+                <sup>3</sup>Neben dem Kommandantendienstweg gibt es Fachdienstwege.
+            </p>
+            <p>
+                <sup>4</sup>Wenn Zeitmangel oder andere Gründe zur Abweichung vom Dienstweg zwingen, müssen die übergangenen Stellen möglichst rasch orientiert werden.
+            </p>
+            <p>
+                <sup>5</sup>In persönlichen Fragen und Angelegenheiten können sich Angehörige der Armee direkt an ihre Kommandanten, an den Truppenarzt oder an den Armeeseelsorger wenden.
+            </p>
+            </div><div id="p21"><h3>21 Befehl und Gehorsam</h3>
+            <p>
+                <sup>1</sup>Vorgesetzte und die von ihnen beauftragten Führungsgehilfen haben das Recht und die Pflicht, Befehle in Dienstsachen zu erteilen. Die Unterstellten sind zu Gehorsam verpflichtet.
+            </p>
+            <p>
+                <sup>2</sup>Die Vorgesetzten sind dafür besorgt, dass Befehle ausgeführt werden, unabhängig davon, ob diese von ihnen selbst oder von übergeordneten Stellen erteilt wurden.
+            </p>
+            <p>
+                <sup>3</sup>Vorgesetzte respektieren die Verantwortungsbereiche ihrer Unterstellten und schmälern diese nicht ohne zwingende Gründe.
+            </p>
+            <p>
+                <sup>4</sup>Angehörige der Armee mit einem besonderen Aufgabenbereich haben Befehlskompetenz, soweit es die Durchführung ihrer Aufgabe erfordert. Das gilt insbesondere für:
+            </p>
+            <dl>
+                <dt>a.</dt>
+                <dd>die Ausbilder gegenüber den Auszubildenden;</dd>
+                <dt>b.</dt>
+                <dd>die fachdienstlichen Vorgesetzten gegenüber den fachdienstlich Unterstellten;</dd>
+                <dt>c.</dt>
+                <dd>die militärischen Polizei- und Kontrollorgane zur unmittelbaren Durchführung ihrer Aufgabe.</dd>
+            </dl>
+            <p>
+                <sup>5</sup>Fallen der Vorgesetzte und sein Stellvertreter aus, übernimmt unverzüglich der Geeignetste die Führung, bis der vorgesetzte Kommandant neue Anordnungen trifft.
+            </p>
+            <p>
+                <sup>6</sup>Wenn ein Unterstellter nicht verstanden hat, was von ihm erwartet wird, verlangt er die notwendigen Erläuterungen.
+            </p>
+            <p>
+                <sup>7</sup>Wenn ein neuer Befehl einem früheren widerspricht, macht der Unterstellte seinen Vorgesetzten auf den Widerspruch aufmerksam. Er führt aber den neuen Befehl aus, wenn der Vorgesetzte daran festhält.
+            </p>
+            <p>
+                <sup>8</sup>Wenn sich die Umstände seit der Erteilung des Befehls erheblich geändert haben, die Verbindung zum Vorgesetzten unterbrochen und Zuwarten nicht zu verantworten ist, können die Unterstellten, soweit nötig, vom Befehl abweichen. Sie handeln aber weiterhin nach der Absicht des Vorgesetzten und orientieren diesen so bald wie möglich.
+            </p>
+            </div>
+            <h2 id="ch3_3">3. Abschnitt: Mannschaft und Kader</h2>
+            <div id="p22"><h3>22 Rangordnung und Grade</h3>
+            <p>
+                <sup>1</sup>Die Angehörigen der Armee sind entsprechend ihrer militärischen Ausbildung und ihrer Funktion in eine Rangordnung mit verschiedenen Graden eingereiht.
+            </p>
+            <p>
+                <sup>2</sup>Bei gleichem Grad wird die Rangordnung nach dem Dienstalter, bei gleichem Dienstalter nach dem Geburtsdatum bestimmt.
+            </p>
+            <p>
+                <sup>3</sup>Kommandoordnung und Rangordnung müssen nicht notwendigerweise übereinstimmen. Ranghöhere können ausnahmsweise Rangtieferen unterstellt sein.
+            </p>
+            <p>
+                <sup>4</sup>Ranghöhere, die nicht zugleich Vorgesetzte sind, haben in fremden Kommandobereichen keine Befehlskompetenz. Bei Verstössen gegen die militärische Ordnung sind sie indessen berechtigt und verpflichtet, Befehle zur Wiederherstellung dieser Ordnung zu erteilen.
+            </p>
+            <p>
+                <sup>5</sup>Grade der Mannschaft sind:<br>
+                 Rekrut, Soldat, Gefreiter, Obergefreiter.
+            </p>
+            <p>
+                <sup>6</sup>Offiziere und Unteroffiziere bilden das Kader.
+            </p>
+            <p>
+                <sup>7</sup>Grade der Unteroffiziere sind:
+            </p>
+            <ul>
+                <li>Korporal, Wachtmeister, Oberwachtmeister</li>
+                <li>Höhere Unteroffiziere: Feldweibel, Fourier, Hauptfeldweibel, Adjutantunteroffizier, Stabsadjutant, Hauptadjutant, Chefadjutant.</li>
+            </ul>
+            <p>
+                <sup>7</sup>Grade der Offiziere sind:
+            </p>
+            <ul>
+                <li>Subalternoffiziere: Leutnant, Oberleutnant</li>
+                <li>Hauptleute: Hauptmann</li>
+                <li>Stabsoffiziere: Major, Oberstleutnant, Oberst</li>
+                <li>Höhere Stabsoffiziere: Brigadier, Divisionär, Korpskommandant</li>
+                <li>Oberbefehlshaber der Armee: General</li>
+            </ul>
+            </div><div id="p23"><h3>23 Unteroffiziere</h3>
+            <p>
+                <sup>1</sup>Die Unteroffiziere sind die der Mannschaft am nächsten stehenden Vorgesetzten. Sie können je nach Grad Gruppen führen, enge Mitarbeiter von Zugführern und Kommandant sein oder in Stäben und als Spezialisten eingesetzt werden.1
+            </p>
+            <p>
+                <sup>2</sup>Die Unteroffiziere haben eigene Kompetenz- und Verantwortungsbereiche. Insbesondere obliegt ihnen die Ausbildung an Waffen, Geräten und Fahrzeugen sowie die Erziehung.
+            </p>
+            <p>
+                <sup>3</sup>Obergefreite, die Funktionen von Unteroffizieren ausüben, gehören zum Kader.
+            </p>
+            </div><div id="p24"><h3>24 Offiziere</h3>
+            <p>
+                <sup>1</sup>Die Offiziere tragen die Verantwortung für die Führung, Ausbildung und Erziehung sowie den Einsatz der Verbände.
+            </p>
+            <p>
+                <sup>2</sup>Offiziere führen die Verbände ab Stufe Zug. Sie können in Stäben eingesetzt werden oder als Spezialisten besondere Aufgaben erfüllen.
+            </p>
+            <p>
+                <sup>3</sup>Unteroffiziere, Obergefreite, Gefreite und Soldaten mit besonderen Fachkenntnissen können bei Bedarf mit entsprechenden Offiziersfunktionen betraut und zum Fachoffizier ernannt werden.
+            </p>
+            </div><div id="p25"><h3>25 Kommandanten</h3>
+            <p>
+                <sup>1</sup>Die Kommandanten führen die Verbände ab Stufe Einheit im Einsatz und in der Ausbildung.
+            </p>
+            <p>
+                <sup>2</sup>Sie sind für die Grund- und Einsatzbereitschaft1 ihrer Verbände verantwortlich.
+            </p>
+            <p>
+                <sup>3</sup>Sie sorgen für umfassende Information ihrer Unterstellten, auch in Fragen der Sicherheitspolitik und der Landesverteidigung.
+            </p>
+            <p>
+                <sup>4</sup>Sie beurteilen die Leistungen von Kader und Mannschaft.
+            </p>
+            <p>
+                <sup>5</sup>Sie planen die Nachfolge für Kader und prüfen Kandidaten, die dafür in Frage kommen.
+            </p>
+            <p>
+                <sup>6</sup>Sie verfügen über die Disziplinarstrafgewalt.
+            </p>
+            <p>
+                <sup>7</sup>Sie erfüllen die mit ihrem Kommando verbundenen ausserdienstlichen Aufgaben.
+            </p>
+            </div><div id="p26"><h3>26 Angehörige der Stäbe</h3>
+            <p>
+                <sup>1</sup>Generalstabsoffiziere, Dienstchefs und andere Führungsgehilfen sind Angehörige der Stäbe. Sie unterstützen ihre Kommandanten bei ihrer Führungsaufgabe. Sie überwachen die Ausführung der Befehle.
+            </p>
+            <p>
+                <sup>2</sup>Angehörige der Stäbe erhalten von ihren Kommandanten eigene Kompetenzbereiche. Im Rahmen dieser Bereiche handeln sie selbständig und erlassen die entsprechenden Anordnungen. Sie leiten die Fachausbildung und kontrollieren die fachtechnische und materielle Grund- und Einsatzbereitschaft der Verbände.
+            </p>
+            <p>
+                <sup>3</sup>Generalstabsoffiziere leiten die Stabsarbeit in den Stäben der Grossen Verbände.
+            </p>
+            </div><div id="p27"><h3>27 Militärisches Personal</h3>
+            <p>
+                <sup>1</sup>Das militärische Personal umfasst Berufs- und Zeitmilitär. Das sind Berufs- und Zeitoffiziere, Berufs- und Zeitunteroffiziere sowie Berufs- und Zeitsoldaten.
+            </p>
+            <p>
+                <sup>2</sup>Das militärische Personal wird in den Bereichen Ausbildung, Erziehung, Führung und Einsatz verwendet.
+            </p>
+            <p>
+                <sup>3</sup>In Schulen tragen die Berufsoffiziere und Berufsunteroffiziere die Ausbildungs-, Erziehungs- und Führungsverantwortung. Sie können durch Zeitmilitär und Fachlehrer unterstützt werden.
+            </p>
+            <p>
+                <sup>4</sup>Die Offiziere werden vor allem von Berufs- und Zeitoffizieren, die Unteroffiziere und Mannschaften von Berufs- und Zeitunteroffizieren ausgebildet.
+            </p>
+            <p>
+                <sup>5</sup>Militärisches Personal, das wie die übrigen Angehörigen der Armee in Stäben und Einheiten eingeteilt ist, leistet dort unter den gleichen Bedingungen Militärdienst wie die übrigen Angehörigen der Armee.
+            </p>
+            </div>
+            <h2 id="ch3_3">4. Abschnitt: Die Einheit und ihr Kader</h2>
+            <div id="p28"><h3>28 Die Einheit</h3>
+            <p>
+                <sup>1</sup>Die Einheit (Kompanie, Batterie, Kolonne, Staffel) ist in der Regel die Einsatzgemeinschaft und die militärische Lebensgemeinschaft der Armeeangehörigen.
+            </p>
+            <p>
+                <sup>2</sup>Die Einheit besteht gewöhnlich aus mehreren Zügen. Diese sind in Gruppen unterteilt.
+            </p>
+            <p>
+                <sup>3</sup>Der Zusammenhalt des Kaders ist für die Einheit von entscheidender Bedeutung.
+            </p>
+            </div><div id="p29"><h3>29 Unteroffiziere der Einheit</h3>
+            <p>
+                <sup>1</sup>Die Korporale führen Gruppen in bestimmten Fachdienstbereichen.
+            </p>
+            <p>
+                <sup>2</sup>Die Wachtmeister sind die Gruppenführer. Sie sind für die Grund- und Einsatzbereitschaft ihrer Gruppe verantwortlich.
+            </p>
+            <p>
+                <sup>3</sup>Die Oberwachtmeister sind Zugführer-Stellvertreter.
+            </p>
+            <p>
+                <sup>4</sup>Die Feldweibel sind Technische Unteroffiziere und Spezialisten in besonderen Fachdienstbereichen.
+            </p>
+            <p>
+                <sup>5</sup>Der Fourier als Einheitsfourier leitet im Auftrag seines Kommandanten den Kommissariatsdienst der Einheit. Er ist insbesondere verantwortlich für:
+            </p>
+            <dl>
+                <dt>a.</dt>
+                <dd>das Rechnungswesen;</dd>
+                <dt>b.</dt>
+                <dd>den Truppenhaushalt;</dd>
+                <dt>c.</dt>
+                <dd>das Unterkunftswesen.</dd>
+            </dl>
+            <p>
+                <sup>6</sup>Der Hauptfeldweibel als Einheitsfeldweibel leitet im Auftrag seines Kommandanten wichtige Bereiche des Dienstbetriebs. Er ist insbesondere verantwortlich für:
+            </p>
+            <dl>
+                <dt>a.</dt>
+                <dd>die Kontrolle der Bestände;</dd>
+                <dt>b.</dt>
+                <dd>den Inneren Dienst;</dd>
+                <dt>c.</dt>
+                <dd>die Lagerung und den Unterhalt von Material und Munition;</dd>
+                <dt>d.</dt>
+                <dd>die Organisation der Truppenunterkunft.</dd>
+            </dl>
+            <p>
+                <sup>7</sup>Der Adjutantunteroffizier ist der Logistikzugführer oder Unfallpikettzugführer.
+            </p>
+            <p>
+                <sup>8</sup>Einheitsfourier, Einheitsfeldweibel und Logistikzugführer beziehungsweise Unfallpikettzugführer sind direkte Mitarbeiter des Einheitskommandanten.
+            </p>
+            </div><div id="p30"><h3>30 Subalternoffiziere der Einheit</h3>
+            <p>
+                <sup>1</sup>Die Subalternoffiziere sind die der Mannschaft am nächsten stehenden Offiziere. Sie führen ihren Zug mit unmittelbarer persönlicher Einflussnahme und teilen im Einsatz Belastungen und Gefahren mit ihrer Truppe.
+            </p>
+            <p>
+                <sup>2</sup>Sie sind für die Grund- und Einsatzbereitschaft ihrer Züge verantwortlich.
+            </p>
+            <p>
+                <sup>3</sup>Sie leiten die Ausbildung und Erziehung in ihren Zügen.1
+            </p>
+            <p>
+                <sup>4</sup>Im Auftrag ihres Kommandanten erfüllen sie besondere Aufgaben.
+            </p>
+            </div><div id="p31"><h3>31 Einheitskommandant</h3>
+            <p>
+                <sup>1</sup>Der Einheitskommandant führt seine Einheit im Einsatz und in der Ausbildung.
+            </p>
+            <p>
+                <sup>2</sup>Er ist für die Grund- und Einsatzbereitschaft seiner Einheit verantwortlich.
+            </p>
+            <p>
+                <sup>3</sup>Er fördert und festigt Vertrauen und Zusammengehörigkeit in seiner Einheit und ist für umfassende Information verantwortlich.
+            </p>
+            <p>
+                <sup>4</sup>Der Einheitskommandant sorgt für die Angehörigen seiner Einheit. Diese können sich auch ausser Dienst an ihren Kommandanten wenden.
+            </p>
+            </div>
+        </div>
+
+        <div id="dr_chapter4">
+            <h1 id="ch4">4. Kapitel: Militärische Ausbildung und Erziehung</h1>
+            <p>
+                Militärische Ausbildung und Erziehung haben das Ziel, die Angehörigen der Armee auf den Krieg und auf die Bewältigung anderer Krisensituationen vorzubereiten. Ausbildung und Erziehung wirken in der Regel zusammen. Die Ausbildung zielt auf das Erreichen von Fähigkeiten und Fertigkeiten ab. Die Erziehung nimmt Einfluss auf das Verhalten und auf Werthaltungen.
+            </p>
+            <p>
+                Die Ausbildung und die Erziehung müssen Kader und Truppe in die Lage versetzen, auch unter schwerer Belastung Dienst zu leisten. Die Anforderungen sind deshalb hoch.8 Gelegentlich müssen sie bis an die Grenze der Leistungsfähigkeit gesteigert werden. Ein hoher Ausbildungsstand und der Erfolg der gemeinsamen Anstrengung fördern das Vertrauen in die eigene Leistungsfähigkeit und in die Zuverlässigkeit von Kameraden und Vorgesetzten.
+            </p>
+            <p>
+                Militärische Ausbildung und Erziehung sind auch Erwachsenenbildung. Sie beruhen auf der gegenseitigen Achtung von Ausbildern und Auszubildenden. Vorgesetzte und Ausbilder fördern die Bereitschaft zur initiativen Mitarbeit und sorgen für günstige Rahmenbedingungen. Eigenverantwortlichkeit und aktive Mitarbeit der Auszubildenden tragen zum Erfolg bei.
+            </p>
+            <p>
+                Militärisches und ziviles Können ergänzen sich gegenseitig. Unsere Milizarmee stützt sich oft auf zivil erworbene Fähigkeiten ihrer Angehörigen; umgekehrt profitieren viele in ihrer zivilen Tätigkeit von Erfahrungen und Kenntnissen aus dem Militärdienst.
+            </p>
+            <div id="p32"><h3>32 Ziel der militärischen Ausbildung und Erziehung</h3>
+            <p>
+                Ziel der militärischen Ausbildung und Erziehung ist die Fähigkeit zur Auftragserfüllung im Krieg und in anderen Krisensituationen, auch unter Einsatz des Lebens.
+            </p>
+            </div><div id="p33"><h3>33 Militärische Ausbildung und Erziehung des einzelnen</h3>
+            <p>
+                <sup>1</sup>Die militärische Ausbildung und Erziehung fördern und festigen bei den Angehörigen der Armee:
+            </p>
+            <dl>
+                <dt>a.</dt>
+                <dd>die Disziplin, aber auch die Fähigkeit, initiativ und selbständig zu handeln. Disziplin und Selbständigkeit sind Haltungen, die sich bei der militärischen Auftragserfüllung ergänzen müssen;</dd>
+                <dt>b.</dt>
+                <dd>die Fähigkeit zur Einordnung und zur Zusammenarbeit im Verband;</dd>
+                <dt>c.</dt>
+                <dd>das Durchhaltevermögen.</dd>
+            </dl>
+            <p>
+                <sup>2</sup>Die militärische Ausbildung vermittelt sicheres militärisches Können und Wissen sowie Gewandtheit, auch unter erschwerten Bedingungen.
+            </p>
+            <p>
+                <sup>3</sup>Die militärische Erziehung festigt Einstellungen, die für die militärische Gemeinschaft unerlässlich sind, wie:
+            </p>
+            <dl>
+                <dt>a.</dt>
+                <dd>Kameradschaft;</dd>
+                <dt>b.</dt>
+                <dd>Vertrauen in die Führung;</dd>
+                <dt>c.</dt>
+                <dd>Handeln im Sinn des Verbandes.</dd>
+            </dl>
+            </div><div id="p34"><h3>34 Ausbildung der Verbände</h3>
+            <p>
+                <sup>1</sup>Die militärische Ausbildung der einzelnen mündet in die Verbandsausbildung.1 Die kleinsten Verbände (Gruppe, Zug und Einheit) sind die eigentlichen Einsatzgemeinschaften. Ihre Aufgaben erfüllen sie im Rahmen grösserer Verbände.
+            </p>
+            <p>
+                <sup>2</sup>Die Ausbildung soll einen Verband befähigen:
+            </p>
+            <dl>
+                <dt>a.</dt>
+                <dd>auch unter schwierigen Bedingungen erfolgreich zu bestehen;</dd>
+                <dt>b.</dt>
+                <dd>mit anderen Verbänden wirkungsvoll zusammenzuarbeiten.</dd>
+            </dl>
+            <p>
+                <sup>3</sup>In der Verbandsausbildung kommen die Fähigkeiten zum Tragen, die in der Einzelausbildung erworben wurden. Hier ist vor allem das Kader gefordert. Für die Mannschaft ergeben sich deshalb Phasen unterschiedlicher Belastung.
+            </p>
+            </div><div id="p35"><h3>35 Ausbildung in den verschiedenen Diensten</h3>
+            <p>
+                <sup>1</sup>Militärdienste im Frieden sind grösstenteils Ausbildungsdienste. Zu diesen gehören die Rekrutenschulen, die Kaderschulen, die Wiederholungskurse und die Kaderkurse.
+            </p>
+            <p>
+                <sup>2</sup>In den Rekrutenschulen und den Kaderschulen erhalten Soldaten und Vorgesetzte ihre Grundausbildung. Diese umfasst die Einzelausbildung sowie die Verbandsausbildung der unteren Stufen.
+            </p>
+            <p>
+                <sup>3</sup>In den Wiederholungskursen und den Kaderkursen werden die funktionsbezogenen Fertigkeiten und Fähigkeiten aufgefrischt und ergänzt. Das Schwergewicht der Wiederholungskurse bilden jedoch Übungen im Verband und die Zusammenarbeit der Fachdienste. Kader und Truppe sollen sich unter möglichst wirklichkeitsnahen Bedingungen bewähren.
+            </p>
+            <p>
+                <sup>4</sup>Auch im Friedensförderungs-, Assistenz- und Aktivdienst werden die Ausbildung und die Erziehung der einzelnen und der Verbände einsatzbezogen vertieft.1
+            </p>
+            <p>
+                <sup>5</sup>In allen Diensten ist die Kaderausbildung eine wichtige Voraussetzung für eine erfolgreiche Ausbildung der Truppe.
+            </p>
+            </div><div id="p36"><h3>36 Ausbildungs- und Erziehungsverantwortung</h3>
+            <p>
+                <sup>1</sup>In den Rekrutenschulen und den Kaderschulen tragen die Berufsoffiziere und Berufsunteroffiziere die Ausbildungs-, Erziehungs- und Führungsverantwortung. Sie bilden hauptsächlich die Milizkader aus und unterstützen sie bei ihrer Führungs-, Ausbildungs- und Erziehungstätigkeit während des Praktischen Dienstes. Sie können durch Zeitmilitär und Fachlehrer unterstützt werden.
+            </p>
+            <p>
+                <sup>2</sup>In den Wiederholungskursen und Kaderkursen sowie im Friedensförderungs-, Assistenz- und Aktivdienst liegt die Gesamtverantwortung beim Truppenkommandanten. Ausbildung und Erziehung sind hier Sache der Milizkader. Diese können durch militärisches Personal und Fachlehrer unterstützt werden.
+            </p>
+            </div><div id="p37"><h3>37 Ausbildungserfolg</h3>
+            <p>
+                <sup>1</sup>Erfolgreiche Ausbildung erfordert klare Zielsetzungen. Diese müssen den Auszubildenden bekannt sein.
+            </p>
+            <p>
+                <sup>2</sup>Den Auszubildenden soll für die Erreichung der Ziele möglichst grosse Eigenverantwortung übertragen werden.
+            </p>
+            <p>
+                <sup>3</sup>Sicheres Können wird durch intensives Training erreicht. Wo reflexartiges Verhalten erforderlich ist, insbesondere bei der Beherrschung von Waffen und Geräten, braucht es drillmässiges Üben.
+            </p>
+            <p>
+                <sup>4</sup>Wer Ausbildungsziele rasch erfüllt, kann als Ausbildungsgehilfe beigezogen werden.
+            </p>
+            <p>
+                <sup>5</sup>Wer die Ausbildungsziele im gesetzten Rahmen nicht erreicht, wird durch besondere Massnahmen gefördert. Der Kommandant kann anordnen, dass die Förderung ausserhalb der allgemeinen Arbeitszeit stattfindet.
+            </p>
+            </div><div id="p38"><h3>38 Beurteilung des Ausbildungserfolgs</h3>
+            <p>
+                <sup>1</sup>Zu den Pflichten der Ausbilder gehören regelmässige Kontrollen des Ausbildungsstandes. Die Vorgesetzten der Ausbilder beurteilen den Ausbildungserfolg aufgrund von Truppenbesuchen und Inspektionen. Bei ungenügenden Resultaten müssen weitere Ausbildungsmassnahmen getroffen werden.
+            </p>
+            <p>
+                <sup>2</sup>Die Auszubildenden haben Anrecht auf Beurteilung ihrer Arbeit. Die Ausbilder informieren sie über das Resultat der Ausbildungskontrollen, und zwar nach Möglichkeit im direkten Gespräch. Das Gespräch ist auf Leistungsverbesserung ausgerichtet.
+            </p>
+            </div><div id="p39"><h3>39 Truppenbesuche</h3>
+            <p>
+                <sup>1</sup>Truppenbesuche ermöglichen es den vorgesetzten Kommandanten, Eindrücke vom Geist der Truppe, von der Ausbildungsarbeit und vom Dienstbetrieb zu gewinnen und ihr Kader besser kennenzulernen.
+            </p>
+            <p>
+                <sup>2</sup>Der Vorgesetzte kann seinen Besuch dem Kommandanten der besuchten Truppe ankündigen. Arbeitspläne für Kader und Truppe sollen aber nicht geändert werden.
+            </p>
+            <p>
+                <sup>3</sup>Der Vorgesetzte bespricht seine Feststellungen mit dem besuchten Kommandanten.
+            </p>
+            <p>
+                <sup>4</sup>Im Auftrag ihres Kommandanten können Dienstchefs Truppenbesuche durchführen, insbesondere zur Kontrolle der Fachausbildung.
+            </p>
+            </div><div id="p40"><h3>40 Inspektionen</h3>
+            <p>
+                <sup>1</sup>Mit periodischen Inspektionen überprüfen die vorgesetzten Kommandanten den Ausbildungsstand und die Grund- und Einsatzbereitschaft der Verbände. Die Vorgesetzten können die Inspektion allein durchführen oder einzelne Fachgebiete von ihren Mitarbeitern inspizieren lassen.
+            </p>
+            <p>
+                <sup>2</sup>Der Inspektor verfügt über die zu inspizierende Truppe und bestimmt, was inspiziert wird. Er beurteilt die Leistungen und bespricht das Ergebnis der Inspektion mit Kader und Mannschaft.
+            </p>
+            </div>
+        </div>
+
+        <div id="dr_chapter5" class="hidden">
+            <h1 id="ch5">5. Kapitel: Dienstbetrieb</h1>
+            <p>
+                Das militärische Leben spielt sich in einer Gemeinschaft ab, die nicht frei gewählt werden kann. Es vollzieht sich oft auf engem Raum und in einfachen Verhältnissen. Die Privatsphäre ist eingeschränkt, und für individuelle Gewohnheiten und Wünsche bleibt wenig Platz.
+            </p>
+            <p>
+                Für den militärischen Alltag sind deshalb Regelungen notwendig. Sie verringern Unsicherheiten und Konflikte.
+            </p>
+            <p>
+                Von den Angehörigen der Armee wird erwartet, dass sie sich bewusst in die militärische Gemeinschaft einordnen. Es gilt, persönliche Wünsche zurückzustellen, auf Kameraden Rücksicht zu nehmen und Schwächeren beizustehen.
+            </p>
+            <p>
+                Im Dienstbetrieb sind Pünktlichkeit, Genauigkeit und Sauberkeit erforderlich. Die Angehörigen der Armee gehen mit dem Material und den Einrichtungen sorgfältig um und verhalten sich umweltbewusst.
+            </p>
+            <p>
+                Der Dienstbetrieb fordert von Kader und Mannschaft diszipliniertes Verhalten. Unerlässlich ist aber auch die Bereitschaft eines jeden, notwendige Arbeiten von sich aus zu erledigen. Je mehr der einzelne selbständig im Sinne des Ganzen handelt, umso weniger sind Anordnungen notwendig.
+            </p>
+            <p>
+                Ein reibungsloser Dienstbetrieb ist Voraussetzung für eine effiziente Ausbildung und einen erfolgreichen Einsatz.
+            </p>
+            <div id="p41"><h3>41 Begriff</h3>
+            <p>
+                <sup>1</sup>Unter Dienstbetrieb versteht man den organisierten Verlauf des täglichen Lebens und der Arbeit in einem militärischen Verband.
+            </p>
+            <p>
+                <sup>2</sup>Die Vorschriften für den Dienstbetrieb gelten für den Ausbildungsdienst. Im Friedensförderungs-, im Assistenz- und im Aktivdienst werden sie der jeweiligen Lage angepasst.1
+            </p>
+            </div>
+            <h2 id="ch5_1">1. Abschnitt: Der militärische Alltag</h2>
+            <div id="p42"><h3>42 Unterkunft und Verpflegung</h3>
+            <p>
+                <sup>1</sup>Die Truppe bezieht Unterkunft in Kasernen, Kantonnementen, unterirdischen Anlagen, Notunterkünften, Biwaks oder bei Einwohnern.
+            </p>
+            <p>
+                <sup>2</sup>Kader und Mannschaft werden in der Regel getrennt untergebracht, ebenso Frauen und Männer.
+            </p>
+            <p>
+                <sup>3</sup>Die Angehörigen der Armee haben während des Dienstes Anspruch auf Verpflegung. Je nach Lage und Auftrag muss unregelmässige Verpflegung in Kauf genommen werden.
+            </p>
+            </div><div id="p43"><h3>43 Gemeinschaftsbereich und Ausgangsrayon</h3>
+            <p>
+                <sup>1</sup>Der Gemeinschaftsbereich umfasst die von der Truppe benützten Einrichtungen, Gebäude und Örtlichkeiten.
+            </p>
+            <p>
+                <sup>2</sup>Der Kommandant kann aus dienstlichen Gründen einen Ausgangsrayon festlegen. Der Ausgangsrayon darf nicht ohne Bewilligung verlassen werden. Im Ausbildungsdienst wird gewöhnlich auf die Festlegung eines Ausgangsrayons verzichtet.
+            </p>
+            </div><div id="p44"><h3>44 Arbeitsprogramm</h3>
+            <p>
+                <sup>1</sup>Mit dem Arbeitsprogramm regelt der Kommandant den Ablauf des Dienstes.
+            </p>
+            <p>
+                <sup>2</sup>Das Arbeitsprogramm dient auch der allgemeinen Information der Truppe.
+            </p>
+            </div><div id="p45"><h3>45 Allgemeine Tagesordnung</h3>
+            <p>
+                <sup>1</sup>Zur Entlastung der Arbeitsprogramme und der Tagesbefehle kann der Kommandant eine Allgemeine Tagesordnung erlassen.
+            </p>
+            <p>
+                <sup>2</sup>Die Allgemeine Tagesordnung regelt die täglich sich wiederholenden Einzelheiten des Dienstbetriebes wie Arbeitszeiten, Mahlzeiten, Rapporte und Krankenvisite.
+            </p>
+            </div><div id="p46"><h3>46 Tagesbefehl</h3>
+            <p>
+                <sup>1</sup>Der Tagesbefehl regelt für den einzelnen Diensttag die Tätigkeiten der Truppe. Er muss allen Angehörigen der betreffenden Formation zugänglich sein. Er soll nur ausnahmsweise abgeändert werden.
+            </p>
+            <p>
+                <sup>2</sup>Auf den Tagesbefehl kann verzichtet werden, wenn die Angaben des Arbeitsprogrammes oder der Allgemeinen Tagesordnung genügen und allgemein zugänglich sind.
+            </p>
+            </div><div id="p47"><h3>47 Dienstzeit, Arbeitszeit, Ruhezeit, Freizeit</h3>
+            <p>
+                <sup>1</sup>Die Dienstzeit umfasst die ganze Dauer eines Militärdienstes. Sie beginnt mit dem Antritt der Einrückungsreise und endet mit dem Abschluss der Entlassungsreise.
+            </p>
+            <p>
+                <sup>2</sup>Die Dienstzeit besteht aus Arbeits-, Ruhe- und Freizeit.
+            </p>
+            <p>
+                <sup>3</sup>Die Arbeitszeit beginnt in der Regel mit der Tagwache und endet mit dem Hauptverlesen oder dem Abendverlesen.
+            </p>
+            <p>
+                <sup>4</sup>Die Ruhezeit dient der Erholung. Sie kann befohlen werden.
+            </p>
+            <p>
+                <sup>5</sup>Als Freizeit gelten Ausgang und Urlaub.
+            </p>
+            <p>
+                <sup>6</sup>Der Kommandant kann einzelne Angehörige der Einheit zu zusätzlicher, dienstlich notwendiger Arbeit ausserhalb der allgemeinen Arbeitszeit befehlen. Er zieht für solche Arbeiten insbesondere diejenigen heran, die geringer Arbeitsbelastung ausgesetzt waren oder ungenügenden Arbeitseinsatz zeigen.
+            </p>
+            </div><div id="p48"><h3>48 Antrittsverlesen</h3>
+            <p>
+                Das Antrittsverlesen beginnt mit der Bestandeskontrolle. Die einsatzbereite Einheit wird dem Kommandanten gemeldet. Dieser kann die Truppe über Ziele und Ablauf der bevorstehenden Tätigkeiten orientieren.
+            </p>
+            </div><div id="p49"><h3>49 Retablierung</h3>
+            <p>
+                <sup>1</sup>Die Retablierung umfasst alle Tätigkeiten, welche die Bereitschaft des Verbandes wiederherstellen.
+            </p>
+            <p>
+                <sup>2</sup>Sie besteht aus Parkdienst und Innerem Dienst.
+            </p>
+            <p>
+                <sup>3</sup>Der Einheitskommandant regelt die Verantwortlichkeiten und ordnet Kontrollen an.
+            </p>
+            </div><div id="p50"><h3>50 Parkdienst</h3>
+            <p>
+                <sup>1</sup>Der Parkdienst umfasst die Wartung der persönlichen Waffe, der Kollektivwaffen, der Munition, der Fahrzeuge und Geräte sowie des übrigen Materials.
+            </p>
+            <p>
+                <sup>2</sup>Zum Parkdienst gehören auch die Pflege und die Unterbringung der Armeetiere.
+            </p>
+            <p>
+                <sup>3</sup>Der Parkdienst wird durch die Kader kontrolliert.
+            </p>
+            </div><div id="p51"><h3>51 Innerer Dienst</h3>
+            <p>
+                <sup>1</sup>Der Innere Dienst umfasst die Wartung der persönlichen Ausrüstung und des persönlich abgegebenen Materials sowie die Körperpflege und die Reinigung der Unterkunft.1
+            </p>
+            <p>
+                <sup>2</sup>Jeder Angehörige der Armee ist für die Vollständigkeit, die Wartung und die Einsatzbereitschaft der persönlichen Ausrüstung und des ihm abgegebenen Materials verantwortlich. Er führt den Inneren Dienst im Rahmen der befohlenen Zeit selbstständig durch.2
+            </p>
+            <p>
+                <sup>3</sup>Der Innere Dienst wird vom Hauptfeldweibel geleitet. Für Kontrollen verfügt dieser im Einverständnis mit dem Einheitskommandanten über zusätzliche Kader.3
+            </p>
+            </div><div id="p52"><h3>52 Hauptverlesen</h3>
+            <p>
+                <sup>1</sup>Das Hauptverlesen bedeutet, dass die Einheit die Tagesarbeit abgeschlossen hat und retabliert ist. Die Einheit tritt, mit Ausnahme der Abkommandierten und Kranken, vollständig an.
+            </p>
+            <p>
+                <sup>2</sup>Das Hauptverlesen findet vor dienstfreien Abenden und vor der Entlassung der Einheit in den Allgemeinen Urlaub statt.
+            </p>
+            <p>
+                <sup>3</sup>Der Einheitskommandant kann eine andere Form des Abtretens anordnen.
+            </p>
+            </div><div id="p53"><h3>53 Ausgang</h3>
+            <p>
+                <sup>1</sup>Der Kommandant legt in der Allgemeinen Tagesordnung oder im Tagesbefehl die Ausgangszeit fest.
+            </p>
+            <p>
+                <sup>2</sup>Kader haben in der Regel zeitlich unbeschränkten Ausgang. Einschränkungen und Kontrollen legt der Kommandant fest.
+            </p>
+            <p>
+                <sup>3</sup>Die örtliche Polizeistunde ist von allen Angehörigen der Armee einzuhalten.
+            </p>
+            <p>
+                <sup>4</sup>Wenn besondere Gründe vorliegen, wie erhöhte Bereitschaft, grosse Anstrengungen der Truppe oder frühe Tagwache, kann der Kommandant den Ausgang zeitlich und örtlich einschränken oder Ruhe befehlen.
+            </p>
+            <p>
+                <sup>5</sup>Im Ausgang wird die Ausgangsuniform getragen. Der Kommandant kann Ausnahmen anordnen.
+            </p>
+            <p>
+                <sup>6</sup>Im Ausgang ist das Führen von privaten Motorfahrzeugen nicht erlaubt. Der Kommandant kann Ausnahmen bewilligen.
+            </p>
+            </div><div id="p54"><h3>54 Abendverlesen</h3>
+            <p>
+                Das Abendverlesen beendet für Rekruten, Soldaten und Gefreite sowie für Obergefreite, sofern sie nicht zum Kader gehören, den Arbeitstag und den Ausgang.1 Nach dem Abendverlesen darf die Unterkunft ohne Bewilligung nicht mehr verlassen werden.
+            </p>
+            </div><div id="p55"><h3>55 Urlaub</h3>
+            <p>
+                <sup>1</sup>Allgemeiner Urlaub ist die angeordnete, mehr als einen Tag dauernde Freizeit für den Grossteil der Absolventen eines Ausbildungsdienstes.
+            </p>
+            <p>
+                <sup>1bis</sup>Längerer allgemeiner Urlaub ist der mehr als 3 Tage dauernde allgemeine Urlaub während oder zwischen Grundausbildungsdiensten. Der Chef der Armee bestimmt den Zeitpunkt und die Dauer der längeren allgemeinen Urlaube und erlässt Weisungen über die administrativen Einzelheiten der längeren allgemeinen Urlaube.
+            </p>
+            <p>
+                <sup>2</sup>Persönlicher Urlaub ist die vom zuständigen Kommandanten auf persönliches Gesuch hin gewährte Freizeit. Sie wird gewährt, wenn zwingende Gründe dafür vorliegen; in allen anderen Fällen kann sie gewährt werden, wenn die militärischen Leistungen des Gesuchstellers und der Dienstbetrieb es zulassen.
+            </p>
+            <p>
+                <sup>3</sup>Bei der Entlassung in den Urlaub und beim Einrücken aus dem Urlaub ist die Ausgangsuniform zu tragen. Der Kommandant kann Ausnahmen anordnen. Im Urlaub sind Zivilkleider erlaubt. Das Umziehen in der Öffentlichkeit ist verboten.
+            </p>
+            <p>
+                <sup>4</sup>Das Eidgenössische Departement für Verteidigung, Bevölkerungsschutz und Sport (VBS)4 kann für bestimmte Anlässe besondere Regelungen erlassen.
+            </p>
+            </div><div id="p56"><h3>56 Beratung und Betreuung</h3>
+            <p>
+                <sup>1</sup>In persönlichen Fragen und Angelegenheiten können sich Angehörige der Armee direkt an ihre Kommandanten, an den Truppenarzt, an den Armeeseelsorger und an den Sozialdienst der Armee wenden.1
+            </p>
+            <p>
+                <sup>2</sup>Bei Bedarf werden Angehörige der Armee seelsorgerisch, medizinisch, psychologisch und sozial beraten oder betreut.
+            </p>
+            <p>
+                <sup>3</sup>Der Kommandant vermittelt Betreuung, medizinische, psychologische oder soziale Beratung und Seelsorge durch entsprechende Fachleute.
+            </p>
+            <p>
+                <sup>4</sup>In Not und Bedrängnis stehen die Angehörigen der Armee einander kameradschaftlich bei.
+            </p>
+            </div><div id="p57"><h3>57 Sprache</h3>
+            <p>
+                Die Vorgesetzten bedienen sich wenn immer möglich der Muttersprache der Unterstellten. Bei gemischtsprachigen Verbänden brauchen sie die Schrift- beziehungsweise Hochsprache.
+            </p>
+            </div>
+            <h2 id="ch5_2">2. Abschnitt: Uniform, Auftreten, Gruss, Meldung </h2>
+            <div id="p58"><h3>58 Uniform und Auftreten</h3>
+            <p>
+                <sup>1</sup>Die Uniform ist Ausdruck der Zugehörigkeit zur Armee. Wer die Uniform trägt, repräsentiert die Truppe und ist deshalb zu korrektem Auftreten und Verhalten verpflichtet. Insbesondere sind die Haare sauber und gepflegt zu tragen; lange Haare dürfen nicht offen getragen werden. Die Haare sowie Schmuck und Piercings dürfen die dienstliche Tätigkeit nicht behindern und die persönliche Sicherheit nicht gefährden. Das VBS kann die Einzelheiten zum Erscheinungsbild in Uniform festlegen.1
+            </p>
+            <p>
+                <sup>2</sup>Truppengattungen, Dienstzweige und Verbände haben besondere Kennzeichen.
+            </p>
+            <p>
+                <sup>3</sup>Uniformstücke, Abzeichen und Gegenstände, die nicht den Vorschriften entsprechen, dürfen nicht getragen werden.
+            </p>
+            </div><div id="p59"><h3>59 Gruss und Meldung</h3>
+            <p>
+                <sup>1</sup>Die militärischen Formen sind Ausdruck der Zusammengehörigkeit und der militärischen Ordnung.
+            </p>
+            <p>
+                <sup>2</sup>Wer Ranghöhere oder Vorgesetzte anspricht oder von diesen angesprochen wird, grüsst und meldet sich an. Wenn beide einander mit Namen kennen, genügt der militärische Gruss.
+            </p>
+            <p>
+                <sup>3</sup>Ausserdem grüssen sich Angehörige der Armee in Situationen, in welchen das Grüssen auch im zivilen Leben üblich ist.
+            </p>
+            <p>
+                <sup>4</sup>Geschlossene Verbände grüssen Ranghöhere und Vorgesetzte. Verbände und Einrichtungen werden den Vorgesetzten und den Kontrollorganen gemeldet.
+            </p>
+            <p>
+                <sup>5</sup>Für die einzelnen Angehörigen der Armee besteht Grusspflicht:
+            </p>
+            <dl>
+                <dt>a.</dt>
+                <dd>gegenüber entfalteten Feldzeichen;</dd>
+                <dt>b.</dt>
+                <dd>beim Erklingen der eigenen oder einer fremden Nationalhymne im Rahmen von offiziellen Anlässen.</dd>
+            </dl>
+            <p>
+                <sup>6</sup>Bei besonderen Anlässen wie offiziellen Feiern, internationalen Wettkämpfen und Empfängen können die militärischen Formen besonders geregelt werden.
+            </p>
+            <p>
+                <sup>7</sup>Wo Bestimmungen für militärische Formen fehlen, gelten die Regeln der zivilen Höflichkeit.
+            </p>
+            </div>
+            <h2 id="ch5_3">3. Abschnitt: Feldzeichen und militärische Feiern</h2>
+            <div id="p60"><h3>60 Bedeutung militärischer Symbole und Feiern</h3>
+            <p>
+                Der Zusammenhalt der Angehörigen eines Verbandes ist unabdingbare Voraussetzung dafür, dass die militärischen Aufgaben und Gefahren gemeistert werden können. Militärische Symbole und Feiern sollen das Zusammengehörigkeitsgefühl festigen und nach innen und aussen zum Ausdruck bringen.
+            </p>
+            </div><div id="p61"><h3>61 Feldzeichen</h3>
+            <p>
+                <sup>1</sup>Das Feldzeichen, die Fahne oder Standarte eines Verbandes, ist Zeichen für den Verband als Schicksalsgemeinschaft. Das Feldzeichen symbolisiert zudem die Eidgenossenschaft und das, was es zu beschützen und zu verteidigen gilt.
+            </p>
+            <p>
+                <sup>2</sup>Die Verbände übernehmen ihr Feldzeichen nach dem Einrücken und geben es vor der Entlassung wieder ab.
+            </p>
+            <p>
+                <sup>3</sup>Bei wichtigen Anlässen wird das Feldzeichen vom Fähnrich mitgeführt. Es repräsentiert den Verband.
+            </p>
+            <p>
+                <sup>4</sup>Der Stabsadjutant des Bataillons- beziehungsweise Abteilungsstabes ist Fähnrich.
+            </p>
+            </div><div id="p62"><h3>62 Militärische Feiern und Veranstaltungen</h3>
+            <p>
+                <sup>1</sup>Militärische Feiern werden würdig, aber schlicht gestaltet. Sie dokumentieren nach innen und aussen den Zusammenhalt der Truppe.
+            </p>
+            <p>
+                <sup>2</sup>Von besonderer Bedeutung sind die Übernahme und die Abgabe des Feldzeichens, die Beförderungsfeiern sowie im Aktivdienst die Vereidigung. Aus besonderem Anlass können auch andere militärische Feiern durchgeführt werden.
+            </p>
+            <p>
+                <sup>3</sup>Militärische Veranstaltungen wie Besuchstage und Defilees halten sich in einfachem und zweckmässigem Rahmen.
+            </p>
+            </div>
+        </div>
+        <div id="dr_chapter6" class="hidden">
+            <h1 id="ch6">6. Kapitel: Seelsorge, Gottesdienst, Bestattung, Testament</h1>
+            <p>
+                Angehörige der Armee sind im Militärdienst mit ungewohnten Anforderungen konfrontiert, und sie haben ungewohnte Pflichten zu erfüllen. Im militärischen Einsatz, insbesondere im Kampf, kommen Angehörige der Armee in Grenzsituationen: Sie sind durch fremde Gewalt an Leib und Leben bedroht; sie müssen aber auch selbst Gewalt anwenden. Solche Gewaltanwendung wird nur aus der Notwendigkeit gerechtfertigt, Bedrohung abzuwenden. In den Ausbildungsdiensten und im Einsatz wird deshalb so weit wie möglich dem Bedürfnis nach religiösem Beistand Rechnung getragen.
+            </p>
+            <p>
+                Dabei ist es eine Forderung des Rechtsstaats und ein Gebot der Kameradschaft, dass Angehörige der Armee anderen in Glaubensfragen mit dem gleichen Respekt begegnen, den sie für sich selbst erwarten.
+            </p>
+            <div id="p63"><h3>63 Achtung der Religionen</h3>
+            <p>
+                <sup>1</sup>Angehörige der Armee respektieren den Glauben anderer Personen. Sie vermeiden alles, was die religiösen Gefühle der Kameraden oder der Bevölkerung verletzt.
+            </p>
+            <p>
+                <sup>2</sup>An Sonntagen und kirchlichen Feiertagen nimmt die Truppe Rücksicht auf die Sonntagsruhe der Bevölkerung. Im Einsatz gilt dies, soweit es Auftrag und Lage gestatten.
+            </p>
+            </div><div id="p64"><h3>64 Seelsorge</h3>
+            <p>
+                <sup>1</sup>Die Angehörigen der Armee haben das Recht auf seelsorgerische Betreuung. Sie können sich direkt an die Armeeseelsorger wenden.
+            </p>
+            <p>
+                <sup>2</sup>Die seelsorgerische Betreuung obliegt den evangelisch-reformierten und römisch-katholischen Armeeseelsorgern. Auch die Angehörigen anderer Konfessionen und Religionen können sich an die Armeeseelsorger wenden, wenn die Verhältnisse keine Betreuung durch einen eigenen Seelsorger gestatten.
+            </p>
+            <p>
+                <sup>3</sup>Die Armeeseelsorger beraten die Kommandanten in Fragen der seelsorgerischen Betreuung. Sie üben ihre seelsorgerische Tätigkeit ohne Einmischung der Truppenvorgesetzten aus.
+            </p>
+            <p>
+                <sup>4</sup>In Not und Bedrängnis stehen die Angehörigen der Armee einander kameradschaftlich bei.
+            </p>
+            </div><div id="p65"><h3>65 Gottesdienst</h3>
+            <p>
+                <sup>1</sup>An Dienstsonntagen und an kirchlichen Feiertagen oder an deren Vortag hält die Truppe in der Regel eigene Gottesdienste. Diese Truppengottesdienste werden von den Armeeseelsorgern durchgeführt, entweder gemeinsam oder nach Konfessionen getrennt.
+            </p>
+            <p>
+                <sup>2</sup>Wenn an diesen Tagen kein Truppengottesdienst stattfindet, ist Gelegenheit zum Besuch eines zivilen Gottesdienstes zu geben, soweit es der Dienstbetrieb zulässt.
+            </p>
+            <p>
+                <sup>3</sup>Die Truppe kann auch während der Woche Gottesdienste durchführen, vor allem bei Dienstleistungen ohne Dienstsonntage.
+            </p>
+            <p>
+                <sup>4</sup>Führen die Armeeseelsorger während des Dienstes einen Truppengottesdienst durch, so erhalten Angehörige anderer Konfessionen und Religionen die Bewilligung zum Besuch ihres zivilen Gottesdienstes. Voraussetzung dafür ist, dass dieser am Unterkunftsort oder in dessen Nähe stattfindet und dass der Dienstbetrieb den Besuch zulässt. Angehörige der Armee, die weder den Truppengottesdienst noch einen zivilen Gottesdienst besuchen wollen, werden dispensiert. Sie können aber zu einer dienstlichen Arbeit befohlen werden.
+            </p>
+            </div><div id="p66"><h3>66 Bestattung</h3>
+            <p>
+                <sup>1</sup>Angehörige der Armee, die im Dienst verstorben sind, werden militärisch bestattet, wenn dies ihrem letzten Willen entspricht. Kann der letzte Wille nicht festgestellt werden, entscheiden die Angehörigen.
+            </p>
+            <p>
+                <sup>2</sup>Bei der Gestaltung der militärischen Bestattung werden die Wünsche der Angehörigen und die örtlichen Gepflogenheiten berücksichtigt.
+            </p>
+            <p>
+                <sup>3</sup>Für Kriegszeiten gelten besondere Vorschriften.
+            </p>
+            </div><div id="p67"><h3>67 Soldatentestament</h3>
+            <p>
+                <sup>1</sup>Wer infolge von Kriegsereignissen oder anderen ausserordentlichen Umständen verhindert ist, ein ordentliches Testament zu errichten, hat das Recht, ein Nottestament zu errichten. Die nachfolgenden Absätze geben lediglich den wesentlichen Inhalt des Schweizerischen Zivilgesetzbuches (Art. 503, 506-508) wieder.
+            </p>
+            <p>
+                <sup>2</sup>Das Nottestament wird mündlich vor zwei Zeugen errichtet. Verwandte in gerader Linie, Geschwister und deren Ehegatten sowie der Ehegatte des Erblassers können nicht als Zeugen mitwirken. Die Zeugen, ihre Verwandten in gerader Linie und ihre Geschwister sowie die Ehegatten aller dieser Personen dürfen in der Verfügung nicht bedacht werden.
+            </p>
+            <p>
+                <sup>3</sup>Die Zeugen legen das Nottestament schriftlich und unterschrieben umgehend bei einer Gerichtsbehörde nieder oder übergeben es einem Offizier mit mindestens Hauptmannsgrad.
+            </p>
+            <p>
+                <sup>4</sup>Wird es nachträglich möglich, ein ordentliches Testament zu errichten, so verliert das Nottestament seine Gültigkeit 14 Tage nach diesem Zeitpunkt.
+            </p>
+            <p>
+                <sup>5</sup>Die Kommandanten orientieren die Angehörigen der Armee rechtzeitig über die einschlägigen Bestimmungen.
+            </p>
+            </div>
+        </div>
+        <div id="dr_chapter7" class="hidden">
+            <h1 id="ch7">7. Kapitel: Polizeibefugnisse der Truppe und Wachtdienst</h1>
+            <p>
+                Im militärischen Kampf wendet die Armee Gewalt gegen feindliche Militärpersonen und feindliche Truppenverbände an. Das Kriegsvölkerrecht erlaubt dabei grundsätzlich, den militärischen Gegner zu vernichten.
+            </p>
+            <p>
+                Von dieser eigentlichen militärischen Gewaltanwendung sind die polizeilichen Zwangsmassnahmen klar zu unterscheiden. Polizeiliche Zwangsmassnahmen sind keine Kampfhandlungen. Ihre Anwendung muss möglichst schonend erfolgen. Gewalt ist hier nur so weit erlaubt, wie es die zu schützenden Rechtsgüter rechtfertigen.
+            </p>
+            <p>
+                Bei der Anwendung polizeilicher Zwangsmassnahmen und beim Wachtdienst muss von Fall zu Fall über die Anwendung von Gewalt entschieden werden. Diese Entscheidungen verlangen ein genaues Abwägen der Verhältnismässigkeit der Massnahmen.
+            </p>
+            <p>
+                Bei Aufgaben im Bereich von Polizeibefugnissen und Wachtdienst ist der einzelne Angehörige der Armee häufig auf sich allein angewiesen. Er trägt deshalb bei diesen Aufgaben eine besonders grosse Verantwortung.
+            </p>
+            <h2 id="ch7_1">1. Abschnitt: Polizeibefugnisse der Truppe</h2>
+            <div id="p68"><h3>68 Grundlage</h3>
+            <p>
+                Zur Erfüllung ihrer Aufgaben stehen der Truppe die notwendigen Polizeibefugnisse zu. In der Verordnung vom 26. Oktober 19941 über die Polizeibefugnisse der Armee sind diese Befugnisse rechtsverbindlich geregelt.2 Die folgenden Ziffern fassen lediglich die Hauptpunkte zusammen.
+            </p>
+            </div><div id="p69"><h3>69 Anwendungsbereich</h3>
+            <p>
+                <sup>1</sup>Im Ausbildungsdienst verfügt die Truppe über Polizeibefugnisse, um Gefahren für ihre eigene Sicherheit abzuwehren und Störungen ihrer Ordnung zu beseitigen.
+            </p>
+            <p>
+                <sup>2</sup>Im Einsatz reichen die Polizeibefugnisse der Truppe so weit, wie dies für die Erfüllung des jeweiligen Auftrags unerlässlich ist.
+            </p>
+            </div><div id="p70"><h3>70 Verhältnismässigkeit</h3>
+            <p>
+                Polizeiliche Zwangsmassnahmen dienen dem Schutz von Personen, Sachen und Rechten. Sie dürfen nur so weit angewendet werden, wie es die Bedeutung der zu schützenden Rechtsgüter rechtfertigt.
+            </p>
+            </div><div id="p71"><h3>71 Polizeiliche Zwangsmassnahmen</h3>
+            <p>
+                Die Truppe darf wenn nötig:
+            </p>
+            <dl>
+                <dt>a.</dt>
+                <dd>Personen anhalten und ihre Identität feststellen;</dd>
+                <dt>b.</dt>
+                <dd>Personen von bestimmten Orten wegweisen oder fernhalten;</dd>
+                <dt>c.</dt>
+                <dd>Personen befragen;</dd>
+                <dt>d.</dt>
+                <dd>Personen durchsuchen;</dd>
+                <dt>e.</dt>
+                <dd>Personen bis zum Eintreffen der zuständigen Polizeiorgane vorläufig festnehmen;</dd>
+                <dt>f.</dt>
+                <dd>Sachen kontrollieren;</dd>
+                <dt>g.</dt>
+                <dd>Sachen beschlagnahmen;</dd>
+                <dt>h.</dt>
+                <dd>in einer den Umständen angemessenen Weise körperlichen Zwang anwenden;</dd>
+                <dt>i.</dt>
+                <dd>im äussersten Fall von der Waffe Gebrauch machen.</dd>
+            </dl>
+            </div><div id="p72"><h3>72 Schusswaffengebrauch</h3>
+            <p>
+                Im Rahmen der Polizeibefugnisse darf, wenn andere verfügbare Mittel nicht ausreichen, als letztes Mittel die Schusswaffe gebraucht werden:1
+            </p>
+            <dl>
+                <dt>a.</dt>
+                <dd>in Notwehr: um einen gefährlichen, rechtswidrigen Angriff auf Leib und Leben der eigenen oder einer anderen Person abzuwehren.2 Der Gebrauch der Schusswaffe ist nur zulässig, sofern der Angriff bereits begonnen hat oder unmittelbar droht. Die Abwehr des Angriffs muss in einer Weise erfolgen, die den Umständen angemessen ist;</dd>
+                <dt>b.</dt>
+                <dd>im Notstand: um Leib und Leben der eigenen oder einer anderen Person vor einer unmittelbar drohenden Gefahr zu retten, sofern die Gefahr nicht anders abgewendet werden kann.3 Kein Notstand liegt vor, wenn die Gefahr selbst verschuldet ist oder wenn der gefährdeten Person zugemutet werden kann, ihre Rechte preiszugeben;</dd>
+                <dt>c.</dt>
+                <dd>zur Erfüllung eines Schutz- oder Bewachungsauftrags, soweit es die zu schützenden Rechtsgüter rechtfertigen und soweit es die Befehle der Vorgesetzten auf der Grundlage der gesetzlichen Vorschriften im Einzelfall bestimmen.</dd>
+            </dl>
+            </div>
+            <h2 id="ch7_2">2. Abschnitt: Wachtdienst</h2>
+            <div id="p73"><h3>73 Auftrag</h3>
+            <p>
+                Die Wache schützt die Truppe, ihr Material, ihre Einrichtungen und ihre Anlagen vor Angriffen und Störungen. Im Rahmen eines Einsatzes der Armee kann eine Wache mit dem Schutz von zivilen Personen und Objekten beauftragt werden.
+            </p>
+            </div><div id="p74"><h3>74 Stellung und Befugnisse der Wache</h3>
+            <p>
+                <sup>1</sup>Die Wache ist ein militärisches Polizeiorgan. Es stehen ihr die Polizeibefugnisse der Truppe zu. Ihren Anordnungen hat jedermann Folge zu leisten.
+            </p>
+            <p>
+                <sup>2</sup>Die Wache ist dem Kommandanten, der den Einsatzbefehl für den Wachtdienst erlassen hat, direkt unterstellt. Der Wachtkommandant nimmt ohne andere Anordnung nur von diesem Kommandanten, die Wachtmannschaft nur vom Wachtkommandanten Befehle entgegen.1
+            </p>
+            <p>
+                <sup>3</sup>Der Wachtdienst wird in der Regel mit der Schusswaffe und Kampfmunition geleistet. Das VBS regelt die Einzelheiten.
+            </p>
+            </div><div id="p75"><h3>75 Einsatzbefehl für den Wachtdienst</h3>
+            <p>
+                <sup>1</sup>Der Einsatzbefehl für den Wachtdienst regelt im Einzelnen den Auftrag, die Rechte und Pflichten der Wache. Insbesondere regelt er den Schusswaffengebrauch sowie den Einsatz von Zwangsmitteln unterhalb des Schusswaffengebrauchs auf der Grundlage der gesetzlichen Vorschriften.
+            </p>
+            <p>
+                <sup>2</sup>Die Angehörigen der Wache werden vor Antritt des Wachtdienstes über den Einsatzbefehl für den Wachtdienst instruiert.
+            </p>
+            <p>
+                <sup>3</sup>Jeder Angehörige der Wache ist verpflichtet, den Einsatzbefehl für den Wachtdienst zu kennen und zu befolgen. Bei Unklarheiten verlangt er vor dem Antritt zum Dienst die nötigen Erläuterungen.
+            </p>
+            </div><div id="p76"><h3>76 Verantwortung</h3>
+            <p>
+                <sup>1</sup>An Wachen werden hohe Anforderungen gestellt. Jeder Angehörige der Wache ist persönlich verantwortlich für die Erfüllung der ihm übertragenen Aufgabe.
+            </p>
+            <p>
+                <sup>2</sup>Im Wachtdienst übernehmen wenige Angehörige der Armee die Verantwortung für die Sicherheit von vielen. Deshalb ist der Wachtdienst eine militärische Aufgabe von besonderem Gewicht. Wachtvergehen wiegen besonders schwer.
+            </p>
+            </div>
+        </div>
+
+        <div id="dr_chapter8" class="hidden">
+            <h1 id="ch8">8. Kapitel: Rechte und Pflichten</h1>
+            <p>
+                Die Schweiz gewährt als Rechtsstaat ihren Bürgerinnen und Bürgern umfassende Grund- und Freiheitsrechte, die die individuelle Entfaltung ermöglichen. Diese Rechte und Freiheiten zu verteidigen, ist eine wichtige Aufgabe unserer Milizarmee.
+            </p>
+            <p>
+                Die Armee kann nur dann glaubwürdig und erfolgreich sein, wenn alle Angehörigen der Armee ihre militärische Pflichten erfüllen. Mit den Ansprüchen des zivilen Lebens lässt sich die militärische Pflichterfüllung aber oft nicht in Einklang bringen. Das zeigt sich besonders deutlich bei der Gehorsamspflicht und bei der Pflicht, im Ernstfall den Auftrag unter Einsatz des Lebens zu erfüllen.
+            </p>
+            <p>
+                Dienst leisten heisst deshalb auch: zugunsten der Gemeinschaft und der gemeinsamen Zielsetzung Einschränkungen der persönlichen Rechte in Kauf nehmen.
+            </p>
+            <p>
+                Allerdings sind die Angehörigen der Armee immer auch Staatsbürgerinnen und Staatsbürger, die Anspruch darauf haben, dass ihre Grundrechte so weit wie möglich respektiert werden. Die unvermeidliche Einschränkung ihrer Rechte darf deshalb nur so weit gehen, wie es der Auftrag der Armee, des Verbandes und des einzelnen erfordert.
+            </p>
+            <p>
+                Dienstpflicht bedeutet aber nicht nur, dass die Rechte eingeschränkt werden. Den Angehörigen der Armee werden auch einige besondere Rechte gewährt. Überdies geniessen sie einen Rechtsschutz, der ihnen die Möglichkeit gibt, sich gegen ungerechtfertigte Eingriffe in ihre Rechte zu wehren.
+            </p>
+            <h2 id="ch8_1">1. Abschnitt: Pflichten</h2>
+            <div id="p77"><h3>77 Grundpflicht</h3>
+            <p>
+                <sup>1</sup>Die Angehörigen der Armee haben die Pflicht, der Schweizerischen Eidgenossenschaft zu dienen und ihre Verfassung zu achten. Sie haben die Pflicht, ihre Aufgaben nach besten Kräften zu erfüllen und mit den anderen Angehörigen der Armee in Kameradschaft zusammenzuarbeiten. Sie sind verpflichtet, die dienstlich notwendigen Risiken und Gefahren auf sich zu nehmen.
+            </p>
+            <p>
+                <sup>2</sup>Im Aktivdienst bekräftigen die Angehörigen der Armee diese Grundpflicht mit dem Eid oder dem Gelübde.
+            </p>
+            <p>
+                <sup>3</sup>Jeder Angehörige der Armee hat die Pflicht, die Menschenwürde zu achten.
+            </p>
+            </div><div id="p78"><h3>78 Pflichten nach Kriegsvölkerrecht</h3>
+            <p>
+                <sup>1</sup>Die Angehörigen der Armee müssen die Vorschriften des Kriegsvölkerrechts befolgen.
+            </p>
+            <p>
+                <sup>2</sup>Grundgedanke des Kriegsvölkerrechts ist es, Opfer, Wehrlose und Unbeteiligte sowie anerkannte Kulturgüter zu schützen und die kriegerische Gewaltanwendung zu begrenzen. Es darf nur angegriffen oder zerstört werden, was mit der Verfolgung von militärischen Zielen in unmittelbarem Zusammenhang steht. Angriff und Zerstörung dürfen nicht weiter gehen, als dies für die Erfüllung des Auftrags notwendig ist.
+            </p>
+            <p>
+                <sup>3</sup>Es ist insbesondere verboten, folgende Personen anzugreifen:
+            </p>
+            <dl>
+                <dt>a.</dt>
+                <dd>unbeteiligte Zivilpersonen;</dd>
+                <dt>b.</dt>
+                <dd>verwundete und kranke Gegner, die ausser Gefecht sind;</dd>
+                <dt>c.</dt>
+                <dd>Gegner, die sich ergeben, sowie Kriegsgefangene;</dd>
+                <dt>d.</dt>
+                <dd>gegnerisches Sanitäts- und Seelsorgepersonal;</dd>
+                <dt>e.</dt>
+                <dd>Gegner, die sich aus beschädigten Luftfahrzeugen retten;</dd>
+                <dt>f.</dt>
+                <dd>Unterhändler, die sich als solche zu erkennen geben.</dd>
+            </dl>
+            <p>
+                <sup>4</sup>Die Angehörigen der Armee müssen sich durch das Tragen der Uniform als Soldaten zu erkennen geben.
+            </p>
+            </div><div id="p79"><h3>79 Pflichten der Vorgesetzten</h3>
+            <p>
+                <sup>1</sup>Die Vorgesetzten haben die Pflicht, ihre Unterstellten zu führen. Sie planen, treffen Entscheidungen, erteilen Aufträge und überwachen deren Erfüllung. Sie tragen die Verantwortung für ihre Führungsaufgaben.
+            </p>
+            <p>
+                <sup>2</sup>Sie setzen sich für das Wohl ihrer Unterstellten ein.
+            </p>
+            <p>
+                <sup>3</sup>Sie erteilen keine Befehle, die darauf abzielen, die Menschenwürde zu verletzen.
+            </p>
+            </div><div id="p80"><h3>80 Gehorsam</h3>
+            <p>
+                <sup>1</sup>Die Angehörigen der Armee sind ihren Vorgesetzten und anderen Befehlsbefugten in Dienstsachen zu Gehorsam verpflichtet. Sie müssen deren Befehle nach besten Kräften vollständig, gewissenhaft und zeitgerecht ausführen.
+            </p>
+            <p>
+                <sup>2</sup>Unterstellte führen einen Befehl nicht aus, wenn sie erkennen, dass dieser eine Tat verlangt, die nach Gesetz oder Kriegsvölkerrecht strafbar ist. Wirken sie trotzdem wissentlich an einer solchen Tat mit, so werden sie zur Rechenschaft gezogen.
+            </p>
+            </div><div id="p81"><h3>81 Befolgung von Dienstvorschriften</h3>
+            <p>
+                Die Angehörigen der Armee beachten und befolgen die für sie geltenden Reglemente und Dienstvorschriften.
+            </p>
+            </div><div id="p82"><h3>82 Kameradschaft</h3>
+            <p>
+                Die Angehörigen der Armee arbeiten kameradschaftlich zusammen. Sie respektieren gegenseitig Persönlichkeit und Eigentum und stehen einander in Not und Gefahr bei. Die Kameradschaftspflicht besteht unabhängig vom militärischen Grad, von politischer oder religiöser Überzeugung, von Alter, Geschlecht, Sprache, Herkunft und Hautfarbe.
+            </p>
+            </div><div id="p83"><h3>83 Verschwiegenheit im Umgang mit persönlichen Daten</h3>
+            <p>
+                <sup>1</sup>Wer aufgrund seiner Funktion oder seines Einsatzes Kenntnisse über persönliche Angelegenheiten anderer Personen erlangt, ist zu Verschwiegenheit verpflichtet. Er darf von diesen Kenntnissen nur Gebrauch oder Mitteilung machen, soweit es für den Auftrag unentbehrlich ist, wenn gesetzliche Auskunftspflichten bestehen oder wenn die betroffene Person eingewilligt hat.
+            </p>
+            <p>
+                <sup>2</sup>Seelsorger, Ärzte und deren Mitarbeiter sowie Angehörige der Militärjustiz sind zur Wahrung des Berufsgeheimnisses verpflichtet. Auch das Personal der sozialen und psychologischen Beratungsdienste der Armee und die Militärrichter unterstehen der Pflicht zur Verschwiegenheit. Das Post- und Telekommunikationsgeheimnis ist zu achten.
+            </p>
+            </div><div id="p84"><h3>84 Wahrung dienstlicher Geheimnisse</h3>
+            <p>
+                <sup>1</sup>Die Angehörigen der Armee müssen die Vorschriften über die Geheimhaltung beachten. Dienstliche Informationen, die klassifiziert sind (GEHEIM, VERTRAULICH oder INTERN) oder aufgrund ihrer Bedeutung nicht für Dritte bestimmt sind, dürfen nicht weitergegeben werden. Diese Verschwiegenheitspflicht gilt während und ausserhalb der Dienstzeit. Sie gilt auch nach Beendigung der Militärdienstpflicht.1
+            </p>
+            <p>
+                <sup>2</sup>Kenntnis von klassifizierten und geheimzuhaltenden Informationen darf nur erhalten, wer diese zur Erfüllung seiner Aufgabe benötigt und eine Personensicherheitsprüfung bestanden hat.2 Von diesen Kenntnissen darf nur so weit Gebrauch oder Mitteilung gemacht werden, wie dies der jeweilige Auftrag erfordert.
+            </p>
+            <p>
+                <sup>3</sup>Wer mit klassifizierten oder geheimzuhaltenden Informationen und Sachen arbeitet oder darüber verfügen kann, muss diese vor Verlust sowie vor unbefugter Einsichtnahme oder Verwendung durch Dritte schützen.
+            </p>
+            </div><div id="p85"><h3>85 Verpflichtung zum Grad oder zur Funktion</h3>
+            <p>
+                <sup>1</sup>Die Armee benötigt zur Erfüllung ihres Auftrags eine ausreichende Zahl geeigneter Unteroffiziere und Offiziere. Deshalb können Angehörige der Armee zu einem bestimmten Grad oder einer Funktion verpflichtet werden. Sie müssen die entsprechenden Dienste leisten und die mit Grad oder Funktion verbundenen ausserdienstlichen Aufgaben erfüllen.
+            </p>
+            <p>
+                <sup>2</sup>Unteroffiziere, Obergefreite, Gefreite und Soldaten mit besonderen Fachkenntnissen können bei Bedarf mit entsprechenden Offiziersfunktionen betraut werden (Fachoffiziere).1 Sie leisten die diesen Funktionen entsprechenden Dienste. Ausbildungsdienste für einen höheren Grad oder für eine neue Funktion müssen hingegen nicht geleistet werden. Solange sie die Funktion ausüben, haben sie gleiche Rechte und Pflichten wie die Offiziere in gleicher Funktion.
+            </p>
+            </div><div id="p86"><h3>86 Sorgfaltspflichten gegenüber Ausrüstung und Material</h3>
+            <p>
+                <sup>1</sup>Die persönliche Ausrüstung und das zusätzlich anvertraute Material sind Eigentum des Bundes.
+            </p>
+            <p>
+                <sup>2</sup>Die Angehörigen der Armee müssen mit der persönlichen Ausrüstung, das heisst mit Waffe, Bekleidung und Gepäck, sowie mit dem übrigen Armeematerial, der Munition und den Einrichtungen sorgfältig und sachgemäss umgehen.1
+            </p>
+            <p>
+                <sup>3</sup>Die Angehörigen der Armee müssen während der ganzen Dauer ihrer Militärdienstpflicht die persönliche Ausrüstung und das zusätzlich anvertraute Material sicher aufbewahren und vor Verlust, Beschädigung und Zerstörung schützen. Das Sturmgewehr und sein Verschluss sind getrennt voneinander aufzubewahren.2
+            </p>
+            <p>
+                <sup>4</sup>Die Ausrüstung muss in gutem Zustand gehalten werden. Vorschriftswidrige Änderungen von Ausrüstungsgegenständen sind untersagt. Unbrauchbare, beschädigte oder fehlende Gegenstände sowie nicht passende Uniformstücke müssen vor dem Einrücken repariert, ersetzt oder umgetauscht werden.
+            </p>
+            <p>
+                <sup>5</sup>Für die ausserdienstliche Benützung von Ausrüstungsgegenständen erlässt das VBS besondere Regelungen.
+            </p>
+            <p>
+                <sup>6</sup>Das Ausleihen von Ausrüstungsgegenständen ist grundsätzlich nicht gestattet. Das VBS bestimmt die Ausnahmen.
+            </p>
+            <p>
+                <sup>7</sup>Es ist verboten, Ausrüstungsgegenstände zu veräussern, zu verpfänden oder zu vermieten.
+            </p>
+            </div><div id="p87"><h3>87 Haftung für Schäden</h3>
+            <p>
+                <sup>1</sup>Die Haftung für Schäden richtet sich nach den gesetzlichen Bestimmungen. Die folgenden Absätze fassen die Hauptpunkte zusammen.
+            </p>
+            <p>
+                <sup>2</sup>Wer durch grobfahrlässige oder vorsätzliche Verletzung seiner Dienstpflichten dem Bund einen Schaden zufügt, muss für den Schaden aufkommen.
+            </p>
+            <p>
+                <sup>3</sup>Der Angehörige der Armee haftet für Verlust und Beschädigung seiner persönlichen Ausrüstung und des Materials, das ihm im Dienst anvertraut wird. Von dieser Haftung kann er sich nur befreien, wenn er nachweist, dass er den Schaden nicht durch vorsätzliche oder grobfahrlässige Verletzung seiner Dienstpflicht verursacht hat.
+            </p>
+            <p>
+                <sup>4</sup>Die Formationen haften für Verlust und Beschädigung des ihnen übergebenen Materials, wenn der einzelne Verantwortliche nicht festgestellt werden kann. Für die Deckung solcher Schäden kann ein Soldabzug vorgenommen werden. Die Formation haftet nicht, wenn sie nachweist, dass keiner ihrer Angehörigen den Schaden verschuldet hat.
+            </p>
+            <p>
+                <sup>5</sup>Wenn ein Angehöriger der Armee bei einer dienstlichen Tätigkeit einem Dritten widerrechtlich Schaden zufügt, so haftet der Bund für den Schaden. Der Geschädigte kann den Angehörigen der Armee nicht direkt belangen. Der Bund kann aber auf den Angehörigen der Armee zurückgreifen, wenn dieser den Schaden vorsätzlich oder grobfahrlässig verursacht hat.
+            </p>
+            <p>
+                <sup>6</sup>Die Angehörigen der Armee müssen Schäden an ihrem persönlichen Eigentum grundsätzlich selbst tragen. Entsteht der Schaden an ihrem persönlichen Eigentum jedoch durch einen dienstlichen Unfall oder unmittelbar durch die Ausführung eines Befehls, so richtet der Bund eine angemessene Entschädigung aus.
+            </p>
+            </div><div id="p88"><h3>88 Pflichten im Bereich von Gesundheit und Krankheit</h3>
+            <p>
+                <sup>1</sup>Die Angehörigen der Armee halten sich körperlich fit. Ansteckende Krankheiten oder gesundheitliche Beeinträchtigungen, die im Dienst zu Schädigungen der eigenen Gesundheit oder zur Schädigung Dritter führen können, sind dem Truppenarzt zu melden. Beim Einrücken hat die Meldung anlässlich der sanitarischen Eintrittsmusterung zu erfolgen.
+            </p>
+            <p>
+                <sup>2</sup>Die Angehörigen der Armee müssen sich allen zumutbaren medizinischen Untersuchungen und Massnahmen unterziehen. Sie müssen die vom Bundesrat angeordneten Schutzimpfungen und anderen Massnahmen zur Vorbeugung oder zur Bekämpfung von übertragbaren oder bösartigen Krankheiten vornehmen lassen.
+            </p>
+            <p>
+                <sup>3</sup>Wer sich vorsätzlich dienstuntauglich oder dienstunfähig macht, wird nach den Vorschriften des Militärstrafgesetzes vom 13. Juni 1927 bestraft.3
+            </p>
+            </div><div id="p89"><h3>89 Pflichten ausser Dienst</h3>
+            <p>
+                <sup>1</sup>Angehörige der Armee, die mit dem Sturmgewehr ausgerüstet sind, und Subalternoffiziere der mit dem Sturmgewehr ausgerüsteten Truppen müssen während der Dauer der Militärdienstpflicht an den obligatorischen Schiessübungen teilnehmen. Diese werden von zivilen Schützenvereinen organisiert. Wer die vorgeschriebene Mindestleistung nicht erreicht, wird zu einem Verbliebenenkurs aufgeboten. Wer der Schiesspflicht nicht nachkommt, muss einen Nachschiesskurs bestehen.
+            </p>
+            <p>
+                <sup>2</sup>Das Aufgebot zu Nachschiesskursen erfolgt über Aufgebotsplakate. Es werden keine Marschbefehle versandt.
+            </p>
+            <p>
+                <sup>3</sup>Die Angehörigen der Armee müssen die militärische Meldepflicht erfüllen. Änderungen von persönlichen Daten, von Wohnadresse und Beruf sind innerhalb von vierzehn Tagen dem Sektionschef beziehungsweise dem Kreiskommando zu melden.2 Unverzüglich zu melden ist auch ein allfälliger Verlust des Dienstbüchleins.
+            </p>
+            <p>
+                <sup>4</sup>Angehörige der Armee, die sich länger als zwölf Monate im Ausland aufhalten wollen, müssen Auslandurlaub einholen. Das Gesuch ist an das zuständige Kreiskommando zu richten.
+            </p>
+            <p>
+                <sup>5</sup>Die Angehörigen der Armee informieren sich rechtzeitig, ob und wann sie einrücken müssen. Die öffentlich angeschlagenen Aufgebotsplakate geben hierüber Auskunft. Sie gelten als Aufgebot. Einrückungsort und Einrückungszeit werden im Marschbefehl angeordnet. Wer 14 Tage vor Dienstbeginn keinen Marschbefehl erhalten hat, ist verpflichtet, sich bei seinem Kommandanten zu melden. Wer über seine Einrückungspflicht im Unklaren ist, fragt beim Sektionschef beziehungsweise Kreiskommando oder beim Kommandanten nach.
+            </p>
+            </div><div id="p90"><h3>90 Vorbereitungsarbeiten für den Dienst und Entlassungsarbeiten</h3>
+            <p>
+                <sup>1</sup>Angehörige des Kaders sind verpflichtet, die vom Kommandanten verlangten Dienstvorbereitungen zu leisten. Sie müssen ihre Aufgaben von Dienstbeginn an erfüllen können.
+            </p>
+            <p>
+                <sup>2</sup>Die Kommandanten können Angehörige der Truppe vor dem Einrücken oder nach der Entlassung zu Arbeiten aufbieten, die zur Vorbereitung oder zum Abschluss des Dienstes nötig sind. Angehörige der Armee müssen ihrem Kommandanten auf Verlangen auch ausser Dienst in fachtechnischen oder administrativen Angelegenheiten des eigenen Verbandes behilflich sein.
+            </p>
+            </div><div id="p91"><h3>91 Bereitschaft ausser Dienst, Aufgebot</h3>
+            <p>
+                <sup>1</sup>Die Angehörigen der Armee müssen sich ausser Dienst so bereithalten, dass sie einem Aufgebot Folge leisten können.
+            </p>
+            <p>
+                <sup>2</sup>Die Angehörigen der Armee können zum Assistenzdienst oder Aktivdienst aufgeboten werden. Das Aufgebot erfolgt durch persönlichen Marschbefehl oder in besonderen Fällen auf andere geeignete Weise, zum Beispiel über Massenmedien.
+            </p>
+            <p>
+                <sup>3</sup>Bei einem Aufgebot zum Aktivdienst sind grundsätzlich alle Angehörigen eines aufgebotenen Verbandes einrückungspflichtig. Die einzelnen Angehörigen der Armee erkundigen sich im Zweifelsfall bei der Militärbehörde. Wer vom Ausbildungsdienst befreit ist, ist nicht ohne weiteres auch vom Aktivdienst befreit.
+            </p>
+            <p>
+                <sup>4</sup>Ein einmal ausgelöstes Aufgebot zum Aktivdienst wird nie rückgängig gemacht.
+            </p>
+            <p>
+                <sup>5</sup>Vorsorglich können Angehörige der Armee oder ganze Formationen auf Pikett gestellt werden. In diesem Fall müssen sie im Hinblick auf das Einrücken besondere Massnahmen treffen. Entsprechende Weisungen erhalten sie schriftlich.
+            </p>
+            </div><div id="p92"><h3>92 Straffolgen</h3>
+            <p>
+                <sup>1</sup>Angehörige der Armee, die ihre Pflichten nicht erfüllen, machen sich strafbar. Zur Rechenschaft gezogen wird insbesondere, wer einen Befehl oder eine Vorschrift missachtet oder den militärischen Betrieb mutwillig stört.
+            </p>
+            <p>
+                <sup>2</sup>Gemeinsame Gehorsamsverweigerung wird besonders streng bestraft. Wer davon Kenntnis erhält, dass Angehörige der Armee den Gehorsam verweigern oder zu verweigern beabsichtigen, ist verpflichtet, dies dem zuständigen Vorgesetzten zu melden.
+            </p>
+            </div>
+            <h2 id="ch8_2">2. Abschnitt: Rechte</h2>
+            <div id="p93"><h3>93 Grund- und Freiheitsrechte</h3>
+            <p>
+                <sup>1</sup>Den Angehörigen der Armee stehen die verfassungsmässigen und gesetzlichen Rechte auch im Militärdienst zu. Das gilt insbesondere für den Schutz der Persönlichkeit, die Glaubens- und Gewissensfreiheit, das Recht auf freie Meinungsäusserung und die Ausübung politischer Rechte.
+            </p>
+            <p>
+                <sup>2</sup>Die Grund- und Freiheitsrechte erfahren im Militärdienst aber Einschränkungen. Diese Einschränkungen dürfen nur so weit gehen, wie die Erfüllung des Auftrags der Armee, der Truppe und des einzelnen Angehörigen der Armee es verlangt.
+            </p>
+            </div><div id="p94"><h3>94 Schutz der Persönlichkeit und der Privatsphäre</h3>
+            <p>
+                <sup>1</sup>Die Angehörigen der Armee haben auch im Militärdienst Anspruch auf Achtung ihrer Persönlichkeit und auf grösstmögliche Wahrung ihrer Privatsphäre.
+            </p>
+            <p>
+                <sup>2</sup>Personendaten über Angehörige der Armee dürfen nur bearbeitet werden, soweit es die Militärgesetzgebung vorsieht. Die Angehörigen der Armee sind grundsätzlich berechtigt, in die sie betreffenden Daten Einsicht zu nehmen.
+            </p>
+            <p>
+                <sup>3</sup>Die Angehörigen der Armee haben Anspruch auf vertrauliche Behandlung der Personendaten, die im Personal-Informations-System der Armee, im Dienstbüchlein oder in anderen militärischen Akten geführt werden. Insbesondere besteht das Recht auf vertrauliche Behandlung von Daten, die aus Urteilen und Verfügungen von zivilen oder militärischen Gerichten, Verwaltungsbehörden oder Kommandostellen stammen.
+            </p>
+            <p>
+                <sup>4</sup>Die Angehörigen der Armee haben Anspruch darauf, dass das Postgeheimnis gewahrt wird und dass Ärzte und ihre Mitarbeiter sowie Seelsorger ihr Berufsgeheimnis wahren. Sie haben Anspruch darauf, dass das Personal der sozialen und psychologischen Beratungsdienste über persönliche Daten Verschwiegenheit wahrt.
+            </p>
+            <p>
+                <sup>5</sup>Die persönlichen Behältnisse und Gepäckstücke der Angehörigen der Armee werden respektiert. In begründeten Fällen können jedoch Kontrollen durchgeführt werden, nach Möglichkeit in Anwesenheit des Betroffenen.
+            </p>
+            </div><div id="p95"><h3>95 Glaubens- und Gewissensfreiheit</h3>
+            <p>
+                <sup>1</sup>Die Freiheit des Glaubens und des Gewissens ist gewährleistet. Ihre Ausübung entbindet jedoch nicht von den dienstlichen Pflichten, und sie darf den Dienstbetrieb nicht beeinträchtigen. Angehörige der Armee dürfen andere Angehörige der Armee oder Dritte nicht in ihren Auffassungen und ihrem Glauben verletzen. Sie dürfen den weltanschaulichen oder religiösen Frieden nicht stören.
+            </p>
+            <p>
+                <sup>2</sup>Während des Dienstes haben die Angehörigen der Armee das Recht, einen Gottesdienst zu besuchen, soweit es die dienstlichen Aufträge zulassen. Der Entscheid ist Sache des Kommandanten.
+            </p>
+            <p>
+                <sup>3</sup>Führen die Armeeseelsorger während des Dienstes einen Truppengottesdienst durch, so erhalten Angehörige anderer Konfessionen und Religionen die Bewilligung zum Besuch ihres zivilen Gottesdienstes. Voraussetzung dafür ist, dass dieser am Unterkunftsort oder in dessen Nähe stattfindet und dass der Dienstbetrieb den Besuch zulässt. Angehörige der Armee, die weder den Truppengottesdienst noch einen zivilen Gottesdienst besuchen wollen, werden dispensiert. Sie können aber zu einer dienstlichen Arbeit befohlen werden.
+            </p>
+            </div><div id="p96"><h3>96 Freiheit der Meinungsäusserung, Ausübung der politischen Rechte, politische Betätigung</h3>
+            <p>
+                <sup>1</sup>Die Angehörigen der Armee können auch im Militärdienst ihre Meinungen frei äussern. Das gilt auch für Meinungen zum Dienst und zur Armee. Die Meinungsäusserungen dürfen aber die Erfüllung der Aufträge, den Gehorsam gegenüber den Vorgesetzten, die Disziplin, den Zusammenhalt der Truppe und den geordneten Dienstbetrieb nicht beeinträchtigen.
+            </p>
+            <p>
+                <sup>2</sup>Im Militärdienst stehende Angehörige der Armee üben ihr Stimm- und Wahlrecht durch vorzeitige oder briefliche Stimmabgabe aus, sofern dies möglich ist.1
+            </p>
+            <p>
+                <sup>3</sup>Den Angehörigen der Armee ist es verboten, politische Versammlungen, Kundgebungen oder Propaganda irgendwelcher Art zu organisieren oder daran teilzunehmen sowie Unterschriften für Wahlvorschläge, Volksinitiativen, Referenden und Petitionen zu sammeln:
+            </p>
+            <dl>
+                <dt>a.</dt>
+                <dd>während der Arbeits- und Ruhezeit;</dd>
+                <dt>b.</dt>
+                <dd>im Gemeinschaftsbereich;</dd>
+                <dt>c.</dt>
+                <dd>wenn sie die Uniform tragen.</dd>
+            </dl>
+            <p>
+                <sup>4</sup>An politischen Veranstaltungen, die von Behörden durchgeführt werden, darf die Uniform getragen werden.
+            </p>
+            </div><div id="p97"><h3>97 Ausübung öffentlicher Ämter</h3>
+            <p>
+                <sup>1</sup>Angehörige der Armee, die ein öffentliches Amt bekleiden, erhalten für die Teilnahme an Sitzungen und für die Vornahme von Amtshandlungen Urlaub, wenn es der Dienst gestattet.
+            </p>
+            <p>
+                <sup>2</sup>Mitglieder kantonaler Parlamente und Regierungen haben im Ausbildungsdienst für die Teilnahme an Ratssitzungen grundsätzlich Anspruch auf Urlaub.
+            </p>
+            <p>
+                <sup>3</sup>Die Mitglieder der Bundesversammlung sind während der Dauer der Sessionen und der Sitzungen der Kommissionen und Fraktionen der Eidgenössischen Räte vom Ausbildungsdienst und vom Assistenzdienst befreit.
+            </p>
+            </div><div id="p98"><h3>98 Recht auf Information</h3>
+            <p>
+                <sup>1</sup>Die Angehörigen der Armee haben Anspruch auf regelmässige Information betreffend:
+            </p>
+            <dl>
+                <dt>a.</dt>
+                <dd>Fragen von allgemeinem Interesse zur Armee, zur Landesverteidigung und zur Sicherheitspolitik;</dd>
+                <dt>b.</dt>
+                <dd>den Ablauf des Dienstes und des Dienstbetriebs;</dd>
+                <dt>c.</dt>
+                <dd>Ausbildungsziele und Ausbildungsergebnisse;</dd>
+                <dt>d.</dt>
+                <dd>besondere Ereignisse in der Truppe;</dd>
+                <dt>e.</dt>
+                <dd>ihre dienstliche Verwendung.</dd>
+            </dl>
+            <p>
+                <sup>2</sup>Der Umfang der Information wird von den dienstlichen Geheimhaltungspflichten und den Pflichten zum Schutz der Persönlichkeit begrenzt (Verschwiegenheitspflicht, Berufsgeheimnisse, Datenschutz).
+            </p>
+            </div><div id="p99"><h3>99 Anregungen zum Dienst</h3>
+            <p>
+                <sup>1</sup>Die Angehörigen der Armee haben das Recht, ihren Vorgesetzten Anregungen zum Dienst zu unterbreiten. Diese können zum Beispiel die Ausbildung, den Dienstbetrieb, das Material oder die Waffen betreffen. Sie können sich auch auf Stimmungen in der Truppe beziehen.
+            </p>
+            <p>
+                <sup>2</sup>Der Vorgesetzte orientiert den betreffenden Angehörigen der Armee darüber, wie er diese Anregung behandeln will, und über das Ergebnis.
+            </p>
+            <p>
+                <sup>3</sup>Der Vorgesetzte leitet Anregungen, die seine Zuständigkeit überschreiten, auf dem Dienstweg weiter.
+            </p>
+            </div><div id="p100"><h3>100 Beratung und Betreuung</h3>
+            <p>
+                <sup>1</sup>Angehörige der Armee, die Hilfe benötigen, werden seelsorgerisch, medizinisch, psychologisch und sozial beraten und betreut. Der Sozialdienst der Armee bietet insbesondere bei persönlichen und finanziellen Problemen Unterstützung an.
+            </p>
+            <p>
+                <sup>2</sup>In persönlichen Fragen und Angelegenheiten können sich Angehörige der Armee direkt an ihre Kommandanten, an den Truppenarzt, an den Armeeseelsorger und an den Sozialdienst der Armee wenden.1
+            </p>
+            </div><div id="p101"><h3>101 Recht auf Sold, Unterkunft und Verpflegung sowie auf besondere Leistungen</h3>
+            <p>
+                <sup>1</sup>Angehörige der Armee erhalten im Militärdienst Sold, Unterkunft und Verpflegung.
+            </p>
+            <p>
+                <sup>2</sup>Die Angehörigen der Armee erhalten ihre Ausrüstung unentgeltlich vom Bund.
+            </p>
+            <p>
+                <sup>3</sup>Angehörige der Armee erhalten bei besoldeter Dienstleistung eine Entschädigung für den Erwerbsausfall, den sie durch die Dienstleistung in Kauf nehmen müssen. Ansätze und Bemessung richten sich nach der Erwerbsersatzordnung.
+            </p>
+            <p>
+                <sup>4</sup>Bei Krankheiten und Unfällen, die während der Dienstzeit verursacht wurden, haben Angehörige der Armee Anspruch auf die Leistungen der Militärversicherung.
+            </p>
+            <p>
+                <sup>5</sup>Während der Dienstzeit gehen die Fahrten mit öffentlichen Verkehrsmitteln zulasten des Bundes.1
+            </p>
+            <p>
+                <sup>6</sup>Angehörige der Armee haben Anspruch auf kostenlose Beförderung von Briefen und Paketen im Rahmen der Vorschriften der Feldpost.2
+            </p>
+            <p>
+                <sup>7</sup>In dringenden Fällen können Angehörige der Armee über das «Büro Schweiz» im Rückrufverfahren erreicht werden.
+            </p>
+            </div>
+            <h2 id="ch8_3">2. Abschnitt: Rechtsschutz</h2>
+            <div id="p102"><h3>102 Persönliche Unterredung</h3>
+            <p>
+                Ist ein Angehöriger der Armee der Überzeugung, es sei ihm Unrecht getan worden, so soll er vorerst versuchen, die Angelegenheit in einer persönlichen Unterredung mit ihrem Urheber zu bereinigen.
+            </p>
+            </div><div id="p103"><h3>103 Persönliche Aussprache mit dem Kommandanten</h3>
+            <p>
+                <sup>1</sup>Kommt die persönliche Unterredung nicht zustande oder führt sie nicht zu einem befriedigenden Ergebnis, so kann der Angehörige der Armee die Angelegenheit in einer persönlichen Aussprache seinem Kommandanten vortragen.
+            </p>
+            <p>
+                <sup>2</sup>Der Angehörige der Armee wendet sich an seinen unmittelbar vorgesetzten Kommandanten. Ist dieser der Urheber der Angelegenheit, so wendet sich der Angehörige der Armee an den nächsthöheren Vorgesetzten.
+            </p>
+            <p>
+                <sup>3</sup>Der Kommandant gewährt die persönliche Aussprache so rasch wie möglich. Wenn nötig nimmt er weitere Abklärungen vor. Er teilt dem Angehörigen der Armee mit, wie er die Angelegenheit beurteilt und wie er weiter vorgehen will.
+            </p>
+            </div><div id="p104"><h3>104 Dienstbeschwerde</h3>
+            <p>
+                <sup>1</sup>Die Angehörigen der Armee können schriftlich Dienstbeschwerde erheben, wenn sie der Überzeugung sind, ein militärischer Vorgesetzter, ein anderer Angehöriger der Armee oder eine Militärbehörde habe ihnen Unrecht getan.
+            </p>
+            <p>
+                <sup>2</sup>Die schriftliche Dienstbeschwerde ist auch in Kommandosachen möglich. Das sind Anordnungen der militärischen Vorgesetzten sowie folgende Anordnungen eidgenössischer und kantonaler Militärbehörden über die militärische Verwendung als Angehörige der Armee:
+            </p>
+            <dl>
+                <dt>a.</dt>
+                <dd>Entscheide im Rahmen der Rekrutierung;</dd>
+                <dt>b.</dt>
+                <dd>vorzeitige Entlassung aus Schulen und Kursen;</dd>
+                <dt>c.</dt>
+                <dd>Mutationen (Einteilung, Neueinteilung, Versetzung, Funktionsübertragung);</dd>
+                <dt>d.</dt>
+                <dd>Anrechnung von Dienstleistungen an die Ausbildungsdienstpflicht;</dd>
+                <dt>e.</dt>
+                <dd>Qualifikationen und Entscheide im Rahmen von Beförderungsverfahren;</dd>
+                <dt>f.</dt>
+                <dd>Ernennung zum Fachoffizier und Entzug der Offiziersfunktion;</dd>
+                <dt>g.</dt>
+                <dd>Verfügungen über die Verlängerung der Militärdienstpflicht;</dd>
+                <dt>i.</dt>
+                <dd>Abgabe und Entzug des militärischen Führerausweises;</dd>
+                <dt>j.</dt>
+                <dd>Einstellung im Flug- oder Fallschirmsprungdienst;</dd>
+                <dt>k.</dt>
+                <dd>Verleihung und Entzug von militärischen Auszeichnungen;</dd>
+                <dt>l.</dt>
+                <dd>ausserdienstliche Aufträge mit unmittelbarem Bezug zum Truppendienst;</dd>
+                <dt>m.</dt>
+                <dd>ausserdienstlicher Vollzug von Disziplinarstrafen.</dd>
+            </dl>
+            <p>
+                <sup>3</sup>Die gesetzlichen Vorschriften finden sich in den Artikeln 36 und 37 des Militärgesetzes vom 3. Februar 1995.
+            </p>
+            <p>
+                <sup>4</sup>Eine Dienstbeschwerde ist unzulässig gegen Aufgebote sowie gegen Entscheide über Dienstverschiebungen, Dienstvorausleistungen, freiwillige Dienstleistungen und Dispensationen. Gegen solche Entscheide kann bei der anordnenden Stelle ein Wiedererwägungsgesuch gestellt werden.
+            </p>
+            </div><div id="p105"><h3>105 Beschwerdeinstanz</h3>
+            <p>
+                <sup>1</sup>Die Dienstbeschwerde wird beim unmittelbar vorgesetzten Kommandanten oder, wenn sie sich gegen eine Militärbehörde richtet, bei dieser Behörde eingereicht. Ist der Empfänger für die Behandlung nicht zuständig, so leitet er die Dienstbeschwerde unverzüglich an die zuständige Stelle weiter.
+            </p>
+            <p>
+                <sup>2</sup>Über die Dienstbeschwerde entscheidet der unmittelbar vorgesetzte Kommandant desjenigen Angehörigen der Armee, gegen den sich die Beschwerde richtet. Richtet sie sich gegen mehrere, so ist der gemeinsame vorgesetzte Kommandant zuständig. Wenn sie sich gegen eine Militärbehörde richtet, so entscheidet die vorgesetzte Behörde.
+            </p>
+            <p>
+                <sup>3</sup>Wenn die Beschwerdeinstanz an der angefochtenen Anordnung mitgewirkt hat oder in der Sache befangen ist, so leitet sie die Dienstbeschwerde zum Entscheid an die nächsthöhere Stelle weiter. Dienstbeschwerden gegen genehmigungsbedürftige Anordnungen werden von der vorgesetzten Stelle der Genehmigungsinstanz entschieden. Das Beschwerdeverfahren wird erst nach der Genehmigung durchgeführt.
+            </p>
+            <p>
+                <sup>4</sup>Streitigkeiten über die Zuständigkeit werden von der gemeinsamen vorgesetzten Stelle entschieden.
+            </p>
+            </div><div id="p106"><h3>106 Fristen</h3>
+            <p>
+                <sup>1</sup>Während der Dienstzeit müssen Dienstbeschwerden innert fünf, ausserhalb der Dienstzeit innert zehn Tagen ab Kenntnis der Anordnung oder des Vorfalls eingereicht werden.
+            </p>
+            <p>
+                <sup>2</sup>Hat der Beschwerdeführer innert der Beschwerdefrist um eine persönliche Aussprache mit dem Kommandanten ersucht, so beginnt die Frist nach der Aussprache neu zu laufen.
+            </p>
+            <p>
+                <sup>3</sup>Bei der Berechnung der Frist wird der Tag, an dem diese zu laufen beginnt, nicht mitgezählt. Fällt der letzte Tag der Frist auf einen Samstag, einen Sonntag oder einen anerkannten Feiertag, so endet sie am nächstfolgenden Werktag.
+            </p>
+            <p>
+                <sup>4</sup>Die Frist ist eingehalten, wenn die Dienstbeschwerde spätestens am letzten Tag bei der Kommandostelle des Empfängers abgegeben oder dem Wachtkommandanten oder der Schweizerischen Post übergeben wird.
+            </p>
+            <p>
+                <sup>5</sup>Kann der Beschwerdeführer nachweisen, dass er ohne sein Verschulden verhindert war, die Dienstbeschwerde fristgerecht einzureichen, so kann er trotz Verspätung noch innerhalb von fünf beziehungsweise von zehn Tagen nach Wegfall des Hindernisses eine Dienstbeschwerde einreichen.
+            </p>
+            </div><div id="p107"><h3>107 Wirkung der Dienstbeschwerde</h3>
+            <p>
+                <sup>1</sup>Die Dienstbeschwerde hat keine aufschiebende Wirkung. Die angefochtene Anordnung bleibt bis zum Beschwerdeentscheid gültig und wirksam. Wenn die Dienstbeschwerde aber offensichtlich begründet ist, so kann die Beschwerdeinstanz die Wirkung der angefochtenen Anordnung aufschieben.
+            </p>
+            <p>
+                <sup>2</sup>Wer Dienstbeschwerde erhebt oder einen Beschwerdeentscheid anficht, darf deswegen weder bestraft noch sonst benachteiligt werden.
+            </p>
+            </div><div id="p108"><h3>108 Verfahren</h3>
+            <p>
+                <sup>1</sup>Die Beschwerdeinstanz oder ein beauftragter Offizier hört den Beschwerdeführer und seinen Beschwerdegegner an und klärt die Vorkommnisse ab. Ausser Dienst kann die Anhörung durch schriftliche Stellungnahmen ersetzt werden.
+            </p>
+            <p>
+                <sup>2</sup>Beschwerdeführer und Beschwerdegegner können zu den Ergebnissen der Abklärung Stellung nehmen und weitere Abklärungen beantragen, und sie können alle Beschwerdeakten einsehen, bevor der Entscheid gefällt wird.
+            </p>
+            <p>
+                <sup>3</sup>Der Beschwerdeführer kann einen Beistand beiziehen oder sich vertreten lassen, soweit dies das Verfahren nicht unverhältnismässig verzögert.
+            </p>
+            <p>
+                <sup>4</sup>Über Dienstbeschwerden, die im Dienst eingereicht werden, soll wenn immer möglich innert fünf Tagen, über alle anderen innert Monatsfrist entschieden werden.
+            </p>
+            <p>
+                <sup>5</sup>Der Entscheid über die Dienstbeschwerde muss kurz begründet und schriftlich mitgeteilt werden. Im Beschwerdeentscheid muss angegeben werden, wo und innert welcher Frist er angefochten werden kann.
+            </p>
+            <p>
+                <sup>6</sup>Wird die Dienstbeschwerde ganz oder teilweise gutgeheissen, so trifft die Beschwerdeinstanz die erforderlichen Massnahmen. Sie kann Anordnungen aufheben oder ändern und dem Beschwerdegegner Weisungen erteilen. Lässt sich ein zu Recht beanstandeter Sachverhalt nicht mehr ändern, so muss mindestens festgestellt werden, dass die Dienstbeschwerde berechtigt war, um dem Beschwerdeführer Genugtuung zu erteilen.
+            </p>
+            <p>
+                <sup>7</sup>Das Dienstbeschwerdeverfahren ist kostenlos. Es werden keine Entschädigungen zugesprochen.
+            </p>
+            </div><div id="p109"><h3>109 Anfechtung des Beschwerdeentscheids</h3>
+            <p>
+                <sup>1</sup>Der Entscheid über die Dienstbeschwerde kann vom Beschwerdeführer und vom Beschwerdegegner schriftlich bei der nächsthöheren Stelle angefochten werden. Deren Entscheid kann beim VBS angefochten werden. Das VBS entscheidet endgültig.
+            </p>
+            <p>
+                <sup>2</sup>Entscheide der kantonalen Militärbehörden können direkt beim VBS angefochten werden, wenn das kantonale Recht nicht den Weiterzug an die Kantonsregierung vorsieht.1
+            </p>
+            <p>
+                <sup>3</sup>Entscheide der Vorinstanzen sind dem Anfechtungsschreiben beizulegen.
+            </p>
+            <p>
+                <sup>4</sup>Die Frist für die Anfechtung beträgt zehn Tage, gerechnet ab der Mitteilung des Entscheids. Der neue Entscheid soll wenn immer möglich innert zehn Tagen, ausser Dienst innert Monatsfrist gefällt werden. Im Übrigen gelten die Bestimmungen über Berechnung und Lauf der Fristen (Ziff. 106, Abs. 3-5), über die Wirkung der Dienstbeschwerde (Ziff. 107) und über das Verfahren (Ziff. 108, Abs. 1-3 und 5-7) auch für die Anfechtung des Beschwerdeentscheids.
+            </p>
+            </div>
+        </div>
+
+        <div id="dr_chapter9" class="hidden">
+            <div id="p900"><h1 id="ch9">9. Kapitel: Militärstrafrecht</h1>
+            <p>
+                In einem militärischen Verband muss Ordnung herrschen. Wer gegen die Ordnung verstösst oder gar eine nach Gesetz strafbare Handlung begeht, muss mit einer Strafe rechnen.
+            </p>
+            <p>
+                Die Angehörigen der Armee sind dem Militärstrafrecht (Militärstrafgesetz, Militärstrafprozess) unterstellt: wenn sie im Militärdienst stehen, wenn sie ausserhalb des Dienstes in Uniform auftreten und wenn es um die Erfüllung ihrer ausserdienstlichen Pflichten geht. Im Urlaub und ausserhalb des Dienstes gilt das Militärstrafrecht aber nur für Verfehlungen, die mit dem Militärdienst einen gewissen Zusammenhang haben.
+            </p>
+            <p>
+                Eine Besonderheit des Militärstrafrechts besteht darin, dass Ordnungswidrigkeiten und geringfügige Verstösse gegen Strafbestimmungen disziplinarisch geahndet werden können. Wer im Militärdienst eine nicht besonders ins Gewicht fallende Verfehlung begeht, wird deswegen also nicht gleich dem Richter überwiesen. Er muss sich seinem Kommandanten gegenüber verantworten, der ihn kennt und auch die besonderen Umstände berücksichtigt, die der Militärdienst mit sich bringt.
+            </p>
+            <p>
+                Disziplinarstrafen sind: Verweis, Ausgangssperre, Disziplinarbusse und Arrest.
+            </p>
+            <p>
+                Eine Disziplinarstrafverfügung kann beim nächsthöheren Kommandanten angefochten werden. Der Beschwerdeentscheid dieses Kommandanten kann, wenn er auf Arrest oder Busse mit einem Betrag von 300 Franken oder mehr lautet, an den Ausschuss des Militärappellationsgerichts weitergezogen werden.
+            </p></div>
+        </div>
+
+        <div id="dr_chapter10" class="hidden">
+            <h1 id="ch10">10. Kapitel: Schlussbestimmungen</h1>
+            <div id="p110"><h3>110 Aufhebung bisherigen Rechts</h3>
+            <p>
+                Das Dienstreglement der Schweizerischen Armee (DR 80) vom 27. Juni 1979 wird aufgehoben.
+            </p>
+            </div><div id="p111"><h3>111 Inkrafttreten</h3>
+            <p>
+                Dieses Dienstreglement tritt am 1. Januar 1995 in Kraft.
+            </p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div id="badges" class="hidden">
+
+        <div class="badge" id="badge1">
+            <img src="resources/images/badges/grad_1.jpg" />
+            <div class="badge_caption">
+                <ul>
+                    <li>Soldat</li>
+                    <li>Soldat</li>
+                    <li>Soldato</li>
+                </ul>
+            </div>
+        </div>
+        <div class="badge" id="badge2">
+            <img src="resources/images/badges/grad_2.jpg" />
+            <div class="badge_caption">
+                <ul>
+                    <li>Gefreiter</li>
+                    <li>Appointé</li>
+                    <li>Appuntato</li>
+                </ul>
+            </div>
+        </div>
+        <div class="badge" id="badge3">
+            <img src="resources/images/badges/grad_3.jpg" />
+            <div class="badge_caption">
+                <ul>
+                    <li>Obergefreiter</li>
+                    <li>Appointé-chef</li>
+                    <li>Appuntato capo</li>
+                </ul>
+            </div>
+        </div>
+        <div class="badge" id="badge4">
+            <img src="resources/images/badges/grad_4.jpg" />
+            <div class="badge_caption">
+                <ul>
+                    <li>Korporal</li>
+                    <li>Caporal</li>
+                    <li>Caporale</li>
+                </ul>
+            </div>
+        </div>
+        <div class="badge" id="badge5">
+            <img src="resources/images/badges/grad_5.jpg" />
+            <div class="badge_caption">
+                <ul>
+                    <li>Wachtmeister</li>
+                    <li>Sergent</li>
+                    <li>Sergente</li>
+                </ul>
+            </div>
+        </div>
+        <div class="badge" id="badge6">
+            <img src="resources/images/badges/grad_6.jpg" />
+            <div class="badge_caption">
+                <ul>
+                    <li>Oberwachtmeister</li>
+                    <li>Sergent-chef</li>
+                    <li>Sergente capo</li>
+                </ul>
+            </div>
+        </div>
+        <div class="badge" id="badge7">
+            <img src="resources/images/badges/grad_7.jpg" />
+            <div class="badge_caption">
+                <ul>
+                    <li>Feldweibel</li>
+                    <li>Sergent-major</li>
+                    <li>Sergente maggiore</li>
+                </ul>
+            </div>
+        </div>
+        <div class="badge" id="badge8">
+            <img src="resources/images/badges/grad_8.jpg" />
+            <div class="badge_caption">
+                <ul>
+                    <li>Fourier</li>
+                    <li>Fourrier</li>
+                    <li>Furiere</li>
+                </ul>
+            </div>
+        </div>
+        <div class="badge" id="badge9">
+            <img src="resources/images/badges/grad_9.jpg" />
+            <div class="badge_caption">
+                <ul>
+                    <li>Hauptfeldweibel</li>
+                    <li>Sergent-major chef</li>
+                    <li>Sergente maggiore capo</li>
+                </ul>
+            </div>
+        </div>
+        <div class="badge" id="badge10">
+            <img src="resources/images/badges/grad_10.jpg" />
+            <div class="badge_caption">
+                <ul>
+                    <li>Adjudant Unteroffizier</li>
+                    <li>Adjudant sof</li>
+                    <li>Aiutante suff</li>
+                </ul>
+            </div>
+        </div>
+        <div class="badge" id="badge11">
+            <img src="resources/images/badges/grad_11.jpg" />
+            <div class="badge_caption">
+                <ul>
+                    <li>Stabsadjutant</li>
+                    <li>Adjudant EM</li>
+                    <li>Aiutante SM</li>
+                </ul>
+            </div>
+        </div>        
+        <div class="badge" id="badge12">
+            <img src="resources/images/badges/grad_12.jpg" />
+            <div class="badge_caption">
+                <ul>
+                    <li>Hauptadjutant</li>
+                    <li>Adjudant-major</li>
+                    <li>Aiutante maggiore</li>
+                </ul>
+            </div>
+        </div>        
+
+    </div>
+
+    <div id="impressum" class="hidden">
+        <h3>Herausgeber</h3>
+        <p>
+            Kommunikation Heer<br />
+            Papiermühlestrasse 14<br />
+            3003 Bern<br />
+            <a href="http://www.armee.ch/heer" target="_blank">www.armee.ch/heer</a>
+            <a href="mailto:info.heer@vtg.admin.ch" target="_blank">info.heer@vtg.admin.ch</a>
+
+        </p>
+
+        <h3>Projektverantwortung, Vertrieb</h3>
+        <p>
+            Zentrum elektronische Medien ZEM<br />
+            Stauffacherstarsse 65/14<br />
+            CH-3003 Bern<br />
+            <a target="_blank" href="http://www.zem.ch">www.zem.ch</a>
+        </p>
+
+        <h3>Umsetzung</h3>
+        <p>
+            Lernetz AG<br />
+            Kornhausplatz 14<br />
+            3011 Bern<br />
+        </p>
+
+        <h3>Version</h3>
+        <p>
+            1.0/2013<br />
+            Alle Rechte vorbehalten<br />
+            2013 Schweizer Armee, ZEM
+        </p>
+
+    </div>
+
+
+
+</body>
+</html>
